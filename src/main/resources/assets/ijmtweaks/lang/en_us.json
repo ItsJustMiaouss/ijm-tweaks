@@ -1,0 +1,16 @@
+{
+  "option.ijmtweaks.darkLoadingOverlay.name": "Dark Loading Overlay",
+  "option.ijmtweaks.darkLoadingOverlay.desc": "Change the red loading overlay to a black color.",
+
+  "option.ijmtweaks.pumpkinOverlayOpacity.name": "Pumpkin Overlay Opacity",
+  "option.ijmtweaks.pumpkinOverlayOpacity.desc": "Change the opacity of the pumpkin's overlay.",
+
+  "option.ijmtweaks.blockBreakParticle.name": "Block Break Particle Scale",
+  "option.ijmtweaks.blockBreakParticle.desc": "Reduce the number of the particles when a block is broken. An higher number means fewer particles.",
+
+  "option.ijmtweaks.experienceBarInCreative.name": "Experience Bar in Creative",
+  "option.ijmtweaks.experienceBarInCreative.desc": "Enable the experience bar in the creative mode.",
+
+  "option.ijmtweaks.autoJumpOnStairs.name": "Auto-Jump on Stairs",
+  "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump when you step on stairs."
+}

@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "ijmtweaks",
+	"version": "${version}",
+	"name": "IJM's Tweaks",
+	"description": "A Fabric mod that add a few tweaks for the client side of Minecraft.",
+	"authors": [
+		"ItsJustMiaouss"
+	],
+	"contact": {
+		"sources": "https://github.com/ItsJustMiaouss/ijm-tweaks"
+	},
+	"license": "MIT",
+	"icon": "assets/ijmtweaks/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.itsjustmiaouss.ijmtweaks.IJMTweaks"
+		],
+		"modmenu": [
+			"com.itsjustmiaouss.ijmtweaks.api.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"ijmtweaks.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": ">=${minecraft_min} <=${minecraft_max}",
+		"java": ">=17",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

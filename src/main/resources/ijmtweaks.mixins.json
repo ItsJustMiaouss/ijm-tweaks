@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "com.itsjustmiaouss.ijmtweaks.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "BlockDustParticleMixin",
+    "InGameHudMixin",
+    "InteractionManagerMixin",
+    "ParticleManagerMixin",
+    "SplashOverlayMixin",
+    "StairsBlockMixin"
+  ]
+}
