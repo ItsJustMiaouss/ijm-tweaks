@@ -36,9 +36,15 @@ dependencies {
 
 processResources {
 	inputs.property "version", project.version
+	inputs.property "minecraft_min", minecraft_min
+	inputs.property "minecraft_max", minecraft_max
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand([
+			"version": project.version,
+			"minecraft_min": minecraft_min,
+			"minecraft_max": minecraft_max
+		])
 	}
 }
 
