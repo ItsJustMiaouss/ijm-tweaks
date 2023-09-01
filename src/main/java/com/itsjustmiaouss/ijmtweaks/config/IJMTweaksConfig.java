@@ -45,7 +45,7 @@ public class IJMTweaksConfig {
 
     @ConfigEntry public boolean darkLoadingOverlay = true;
     @ConfigEntry public float pumpkinOverlayOpacity = 0.4f;
-    @ConfigEntry public int blockBreakParticle = 2;
+    @ConfigEntry public int blockBreakParticle = 0;
     @ConfigEntry public boolean experienceBarInCreative = true;
     @ConfigEntry public boolean autoJumpOnStairs = true;
 
