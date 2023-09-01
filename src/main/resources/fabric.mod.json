@@ -25,7 +25,7 @@
 		"ijmtweaks.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.22",
+		"fabricloader": ">=0.14.19",
 		"minecraft": ">=${minecraft_min} <=${minecraft_max}",
 		"java": ">=17",
 		"yet_another_config_lib_v3": "*"
