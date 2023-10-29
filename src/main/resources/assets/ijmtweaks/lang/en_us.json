@@ -1,4 +1,7 @@
 {
+  "category.ijmtweaks.bindings": "IJMTweaks",
+  "key.ijmtweaks.zoom": "Zoom",
+
   "option.ijmtweaks.darkLoadingOverlay.name": "Dark Loading Overlay",
   "option.ijmtweaks.darkLoadingOverlay.desc": "Set the background color of the loading overlay to black.",
 
@@ -12,5 +15,8 @@
   "option.ijmtweaks.experienceBarInCreative.desc": "Show the experience bar in creative mode.",
 
   "option.ijmtweaks.autoJumpOnStairs.name": "Auto-Jump on Stairs",
-  "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump climbing stairs."
+  "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump climbing stairs.",
+
+  "option.ijmtweaks.zoomLevel.name": "Zoom Level",
+  "option.ijmtweaks.zoomLevel.desc": "Adjust the level of zooming. The keybinding can be changed in the Minecraft options."
 }

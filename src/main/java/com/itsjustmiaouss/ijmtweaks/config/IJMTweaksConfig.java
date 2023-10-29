@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder;
 import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
+import dev.isxander.yacl3.api.controller.DoubleSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
@@ -50,6 +51,7 @@ public class IJMTweaksConfig {
     @SerialEntry public int blockBreakParticle = 0;
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
+    @SerialEntry public double zoomLevel = 0.3;
 
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
@@ -108,6 +110,17 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
+            Option<Double> zoomLevelOpt = Option.<Double>createBuilder()
+                    .name(getName("zoomLevel"))
+                    .description(OptionDescription.createBuilder().
+                            text(getDesc("zoomLevel"))
+                            .image(getImage("zoom_level"), IMG_WIDTH, IMG_HEIGHT).build())
+                    .binding(defaults.zoomLevel,
+                            () -> config.zoomLevel,
+                            newVal -> config.zoomLevel = newVal)
+                    .controller(opt -> DoubleSliderControllerBuilder.create(opt).range(0.1, 0.9).step(0.1))
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
                             .name(Text.of("Configuration"))
@@ -116,7 +129,8 @@ public class IJMTweaksConfig {
                                     pumpkinOverlayOpacityOpt,
                                     blockBreakParticleScaleOpt,
                                     experienceBarInCreativeOpt,
-                                    autoJumpOnStairsOpt
+                                    autoJumpOnStairsOpt,
+                                    zoomLevelOpt
                             ))
                             .build())
                     .save(IJMTweaksConfig::save);
