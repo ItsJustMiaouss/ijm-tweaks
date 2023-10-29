@@ -14,6 +14,7 @@ A Fabric mod that add a few tweaks for the client side of Minecraft.
 
 ### 🔗 Requirement
 
+- [Fabric API](https://modrinth.com/mod/fabric-api)
 - [Yet Another Config Lib](https://modrinth.com/mod/yacl)
 
 ### ℹ️ Recommended

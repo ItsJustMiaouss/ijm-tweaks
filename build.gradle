@@ -20,6 +20,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Mod Menu
 	modApi "com.terraformersmc:modmenu:${project.mod_menu}"
@@ -35,12 +36,14 @@ processResources {
 	inputs.property "version", project.version
 	inputs.property "minecraft_min", minecraft_min
 	inputs.property "minecraft_max", minecraft_max
+	inputs.property "fabric_version", fabric_version
 
 	filesMatching("fabric.mod.json") {
 		expand([
 			"version": project.version,
 			"minecraft_min": minecraft_min,
-			"minecraft_max": minecraft_max
+			"minecraft_max": minecraft_max,
+			"fabric_version": fabric_version
 		])
 	}
 }
