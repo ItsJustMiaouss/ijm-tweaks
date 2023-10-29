@@ -6,8 +6,9 @@ import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
-import dev.isxander.yacl3.config.ConfigEntry;
-import dev.isxander.yacl3.config.GsonConfigInstance;
+import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
+import dev.isxander.yacl3.config.v2.api.SerialEntry;
+import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -23,34 +24,35 @@ public class IJMTweaksConfig {
 
     public static final int IMG_WIDTH = 1920;
     public static final int IMG_HEIGHT = 1080;
-
-    private static final GsonConfigInstance<IJMTweaksConfig> INSTANCE = GsonConfigInstance.createBuilder(IJMTweaksConfig.class)
-            .overrideGsonBuilder(new GsonBuilder()
-                    .setPrettyPrinting()
-                    .create())
-            .setPath(FabricLoader.getInstance().getConfigDir().resolve(IJMTweaks.MOD_ID + ".json"))
+    private static final ConfigClassHandler<IJMTweaksConfig> HANDLER = ConfigClassHandler.createBuilder(IJMTweaksConfig.class)
+            .id(new Identifier(IJMTweaks.MOD_ID, "ijmtweaks"))
+            .serializer(config -> GsonConfigSerializerBuilder.create(config)
+                    .setPath(FabricLoader.getInstance().getConfigDir().resolve(IJMTweaks.MOD_ID + ".json"))
+                    .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
+                    .setJson5(false)
+                    .build())
             .build();
 
     public static void load() {
-        INSTANCE.load();
+        HANDLER.load();
     }
 
     public static void save() {
-        INSTANCE.save();
+        HANDLER.save();
     }
 
     public static IJMTweaksConfig get() {
-        return INSTANCE.getConfig();
+        return HANDLER.instance();
     }
 
-    @ConfigEntry public boolean darkLoadingOverlay = true;
-    @ConfigEntry public float pumpkinOverlayOpacity = 0.4f;
-    @ConfigEntry public int blockBreakParticle = 0;
-    @ConfigEntry public boolean experienceBarInCreative = true;
-    @ConfigEntry public boolean autoJumpOnStairs = true;
+    @SerialEntry public boolean darkLoadingOverlay = true;
+    @SerialEntry public float pumpkinOverlayOpacity = 0.4f;
+    @SerialEntry public int blockBreakParticle = 0;
+    @SerialEntry public boolean experienceBarInCreative = true;
+    @SerialEntry public boolean autoJumpOnStairs = true;
 
     public static YetAnotherConfigLib getScreen() {
-        return YetAnotherConfigLib.create(INSTANCE, ((defaults, config, builder) -> {
+        return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
             Option<Boolean> darkLoadingScreenOpt = Option.<Boolean>createBuilder()
                     .name(getName("darkLoadingOverlay"))
                     .description(OptionDescription.createBuilder().
@@ -108,15 +110,15 @@ public class IJMTweaksConfig {
 
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
-                        .name(Text.of("Configuration"))
-                        .options(List.of(
-                                darkLoadingScreenOpt,
-                                pumpkinOverlayOpacityOpt,
-                                blockBreakParticleScaleOpt,
-                                experienceBarInCreativeOpt,
-                                autoJumpOnStairsOpt
-                        ))
-                        .build())
+                            .name(Text.of("Configuration"))
+                            .options(List.of(
+                                    darkLoadingScreenOpt,
+                                    pumpkinOverlayOpacityOpt,
+                                    blockBreakParticleScaleOpt,
+                                    experienceBarInCreativeOpt,
+                                    autoJumpOnStairsOpt
+                            ))
+                            .build())
                     .save(IJMTweaksConfig::save);
         }));
     }
