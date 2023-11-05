@@ -30,11 +30,7 @@ public abstract class StairsBlockMixin {
         Block block = world.getBlockState(pos).getBlock();
         SimpleOption<Boolean> autoJump = MinecraftClient.getInstance().options.getAutoJump();
 
-        if(block instanceof StairsBlock) {
-            autoJump.setValue(true);
-        } else {
-            autoJump.setValue(false);
-        }
+        autoJump.setValue(block instanceof StairsBlock);
     }
 
 }
