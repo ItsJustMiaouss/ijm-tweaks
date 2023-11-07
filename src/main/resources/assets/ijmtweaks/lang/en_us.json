@@ -1,5 +1,9 @@
 {
   "category.ijmtweaks.bindings": "IJMTweaks",
+  "category.ijmtweaks.overlay": "Overlay",
+  "category.ijmtweaks.utility": "Utility",
+  "category.ijmtweaks.rendering": "Rendering",
+
   "key.ijmtweaks.zoom": "Zoom",
 
   "option.ijmtweaks.darkLoadingOverlay.name": "Dark Loading Overlay",

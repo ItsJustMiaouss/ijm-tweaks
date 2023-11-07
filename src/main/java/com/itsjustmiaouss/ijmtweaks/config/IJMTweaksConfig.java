@@ -56,7 +56,7 @@ public class IJMTweaksConfig {
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
             Option<Boolean> darkLoadingScreenOpt = Option.<Boolean>createBuilder()
-                    .name(getName("darkLoadingOverlay"))
+                    .name(getOptionName("darkLoadingOverlay"))
                     .description(OptionDescription.createBuilder().
                             text(getDesc("darkLoadingOverlay"))
                             .image(getImage("dark_overlay"), IMG_WIDTH, IMG_HEIGHT).build())
@@ -68,7 +68,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Float> pumpkinOverlayOpacityOpt = Option.<Float>createBuilder()
-                    .name(getName("pumpkinOverlayOpacity"))
+                    .name(getOptionName("pumpkinOverlayOpacity"))
                     .description(OptionDescription.createBuilder().
                             text(getDesc("pumpkinOverlayOpacity"))
                             .image(getImage("pumpkin_overlay"), IMG_WIDTH, IMG_HEIGHT).build())
@@ -79,7 +79,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Integer> blockBreakParticleScaleOpt = Option.<Integer>createBuilder()
-                    .name(getName("blockBreakParticle"))
+                    .name(getOptionName("blockBreakParticle"))
                     .description(OptionDescription.createBuilder().
                             text(getDesc("blockBreakParticle"))
                             .image(getImage("break_particles"), IMG_WIDTH, IMG_HEIGHT).build())
@@ -90,7 +90,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Boolean> experienceBarInCreativeOpt = Option.<Boolean>createBuilder()
-                    .name(getName("experienceBarInCreative"))
+                    .name(getOptionName("experienceBarInCreative"))
                     .description(OptionDescription.createBuilder()
                             .text(getDesc("experienceBarInCreative"))
                             .image(getImage("experience_bar"), IMG_WIDTH, IMG_HEIGHT).build())
@@ -101,7 +101,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Boolean> autoJumpOnStairsOpt = Option.<Boolean>createBuilder()
-                    .name(getName("autoJumpOnStairs"))
+                    .name(getOptionName("autoJumpOnStairs"))
                     .description(OptionDescription.createBuilder()
                             .text(getDesc("autoJumpOnStairs")).build())
                     .binding(defaults.autoJumpOnStairs,
@@ -111,7 +111,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Double> zoomLevelOpt = Option.<Double>createBuilder()
-                    .name(getName("zoomLevel"))
+                    .name(getOptionName("zoomLevel"))
                     .description(OptionDescription.createBuilder().
                             text(getDesc("zoomLevel"))
                             .image(getImage("zoom_level"), IMG_WIDTH, IMG_HEIGHT).build())
@@ -123,21 +123,35 @@ public class IJMTweaksConfig {
 
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
-                            .name(Text.of("Configuration"))
+                            .name(getCategoryName("overlay"))
                             .options(List.of(
                                     darkLoadingScreenOpt,
-                                    pumpkinOverlayOpacityOpt,
-                                    blockBreakParticleScaleOpt,
+                                    pumpkinOverlayOpacityOpt
+                            ))
+                            .build())
+                    .category(ConfigCategory.createBuilder()
+                            .name(getCategoryName("utility"))
+                            .options(List.of(
                                     experienceBarInCreativeOpt,
                                     autoJumpOnStairsOpt,
                                     zoomLevelOpt
+                            ))
+                            .build())
+                    .category(ConfigCategory.createBuilder()
+                            .name(getCategoryName("rendering"))
+                            .options(List.of(
+                                    blockBreakParticleScaleOpt
                             ))
                             .build())
                     .save(IJMTweaksConfig::save);
         }));
     }
 
-    private static Text getName(String option) {
+    private static Text getCategoryName(String category) {
+        return Text.translatable(String.format("category.%s.%s", IJMTweaks.MOD_ID, category));
+    }
+
+    private static Text getOptionName(String option) {
         return Text.translatable(String.format("option.%s.%s.name", IJMTweaks.MOD_ID, option));
     }
 
