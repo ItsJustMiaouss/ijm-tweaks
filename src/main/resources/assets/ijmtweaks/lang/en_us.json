@@ -15,11 +15,11 @@
   "option.ijmtweaks.experienceBarInCreative.name": "Experience Bar in Creative",
   "option.ijmtweaks.experienceBarInCreative.desc": "Show the experience bar in creative mode.",
   "option.ijmtweaks.autoJumpOnStairs.name": "Auto-Jump on Stairs",
-  "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump climbing stairs.",
+  "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump when climbing stairs.",
   "option.ijmtweaks.zoomLevel.name": "Zoom Level",
   "option.ijmtweaks.zoomLevel.desc": "Adjust the zoom level. Lower this value to increase the zoom level. The keybinding can be changed in the Minecraft options.",
   "option.ijmtweaks.fireOverlay.name": "Fire Overlay",
-  "option.ijmtweaks.fireOverlay.desc": "Reduce or disable the height of the fire overlay.",
+  "option.ijmtweaks.fireOverlay.desc": "Reduce the height or disable the visibility of the fire overlay.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduce": "Reduce",
