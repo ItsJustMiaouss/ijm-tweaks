@@ -3,10 +3,7 @@ package com.itsjustmiaouss.ijmtweaks.config;
 import com.google.gson.GsonBuilder;
 import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import dev.isxander.yacl3.api.*;
-import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
-import dev.isxander.yacl3.api.controller.DoubleSliderControllerBuilder;
-import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
-import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
+import dev.isxander.yacl3.api.controller.*;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -52,6 +49,19 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
     @SerialEntry public double zoomLevel = 0.3;
+
+    public enum FireOverlayType implements NameableEnum {
+        DEFAULT,
+        REDUCE,
+        HIDE;
+
+        @Override
+        public Text getDisplayName() {
+            return Text.translatable(String.format("enum.%s.fireOverlayType.%s", IJMTweaks.MOD_ID, this.name().toLowerCase()));
+        }
+    }
+
+    @SerialEntry public FireOverlayType fireOverlay = FireOverlayType.REDUCE;
 
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
@@ -121,12 +131,25 @@ public class IJMTweaksConfig {
                     .controller(opt -> DoubleSliderControllerBuilder.create(opt).range(0.1, 0.9).step(0.1))
                     .build();
 
+            Option<FireOverlayType> fireOverlayOpt = Option.<FireOverlayType>createBuilder()
+                    .name(IJMTweaksConfig.getOptionName("fireOverlay"))
+                    .description(OptionDescription.createBuilder().
+                            text(IJMTweaksConfig.getDesc("fireOverlay"))
+                            .image(IJMTweaksConfig.getImage("fire_overlay"), IMG_WIDTH, IMG_HEIGHT)
+                            .build())
+                    .binding(defaults.fireOverlay,
+                            () -> config.fireOverlay,
+                            newVal -> config.fireOverlay = newVal)
+                    .controller(opt -> EnumControllerBuilder.create(opt).enumClass(IJMTweaksConfig.FireOverlayType.class))
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("overlay"))
                             .options(List.of(
                                     darkLoadingScreenOpt,
-                                    pumpkinOverlayOpacityOpt
+                                    pumpkinOverlayOpacityOpt,
+                                    fireOverlayOpt
                             ))
                             .build())
                     .category(ConfigCategory.createBuilder()

@@ -8,6 +8,7 @@
   "client": [
     "GameRendererMixin",
     "InGameHudMixin",
+    "InGameOverlayRenderer",
     "InteractionManagerMixin",
     "ParticleManagerMixin",
     "SplashOverlayMixin",
