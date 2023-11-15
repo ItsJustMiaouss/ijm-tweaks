@@ -10,6 +10,7 @@ A Fabric mod that add a few tweaks for the client side of Minecraft.
 - Reduce the particles when a block is broken.
 - Change the opacity of the pumpkin overlay.
 - Zoom by holding a keybinding.
+- Lower the height of the fire overlay.
 
 > Note: Everything is configurable and can be toggled.
 
