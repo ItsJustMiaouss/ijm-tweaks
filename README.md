@@ -1,6 +1,6 @@
 ## ⚙️ IJM's Tweaks
 
-A Fabric mod that add a few tweaks for the client side of Minecraft.
+A Fabric mod that tweaks the client side of Minecraft.
 
 ### 📌Description
 
