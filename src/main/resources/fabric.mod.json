@@ -3,7 +3,7 @@
 	"id": "ijmtweaks",
 	"version": "${version}",
 	"name": "IJM's Tweaks",
-	"description": "A Fabric mod that add a few tweaks for the client side of Minecraft.",
+	"description": "A Fabric mod that tweaks the client side of Minecraft.",
 	"authors": [
 		"ItsJustMiaouss"
 	],
