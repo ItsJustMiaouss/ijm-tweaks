@@ -25,4 +25,4 @@ A Fabric mod that tweaks the client side of Minecraft.
 
 ### 📜 License
 
-This project is under the [MIT](https://github.com/ItsJustMiaouss/ijm-tweaks/blob/1.20/LICENSE) license.
+This project is under the [MIT](https://github.com/ItsJustMiaouss/ijm-tweaks?tab=MIT-1-ov-file#readme) license.
