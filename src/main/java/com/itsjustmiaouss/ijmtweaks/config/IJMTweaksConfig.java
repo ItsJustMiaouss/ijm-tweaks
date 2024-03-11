@@ -52,7 +52,7 @@ public class IJMTweaksConfig {
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
-        REDUCE,
+        REDUCED,
         HIDE;
 
         @Override
@@ -61,7 +61,7 @@ public class IJMTweaksConfig {
         }
     }
 
-    @SerialEntry public FireOverlayType fireOverlay = FireOverlayType.REDUCE;
+    @SerialEntry public FireOverlayType fireOverlay = FireOverlayType.REDUCED;
 
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {

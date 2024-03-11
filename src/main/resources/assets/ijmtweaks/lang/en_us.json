@@ -22,7 +22,7 @@
   "option.ijmtweaks.fireOverlay.desc": "Reduce the height or disable the visibility of the fire overlay.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
-  "enum.ijmtweaks.fireOverlayType.reduce": "Reduce",
+  "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",
   "enum.ijmtweaks.fireOverlayType.hide": "Hide"
 
 }

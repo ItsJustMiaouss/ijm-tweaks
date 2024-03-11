@@ -20,7 +20,7 @@ public abstract class InGameOverlayRenderer {
         IJMTweaksConfig config = IJMTweaksConfig.get();
 
         switch (config.fireOverlay) {
-            case REDUCE -> {
+            case REDUCED -> {
                 return -0.5f;
             }
             case HIDE -> {
