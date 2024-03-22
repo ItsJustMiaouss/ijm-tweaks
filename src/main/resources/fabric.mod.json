@@ -8,7 +8,9 @@
 		"ItsJustMiaouss"
 	],
 	"contact": {
-		"sources": "https://github.com/ItsJustMiaouss/ijm-tweaks"
+		"sources": "https://github.com/ItsJustMiaouss/ijm-tweaks",
+		"issues": "https://github.com/ItsJustMiaouss/ijm-tweaks/issues",
+		"homepage": "https://modrinth.com/mod/ijm-tweaks"
 	},
 	"license": "MIT",
 	"icon": "assets/ijmtweaks/icon.png",
@@ -33,5 +35,12 @@
 	},
 	"suggests": {
 		"modmenu": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://itsjustmiaouss.com/discord"
+			}
+		}
 	}
 }
