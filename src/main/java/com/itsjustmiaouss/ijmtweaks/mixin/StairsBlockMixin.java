@@ -1,6 +1,5 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
-import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -45,7 +44,6 @@ public abstract class StairsBlockMixin {
 
             // If the next upper block isn't a stair
             if(!(upperBlock instanceof StairsBlock)) return;
-            IJMTweaks.LOGGER.info("enabled");
         }
 
         autoJump.setValue(block instanceof StairsBlock);
