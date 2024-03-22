@@ -5,6 +5,7 @@
   "category.ijmtweaks.rendering": "Rendering",
 
   "key.ijmtweaks.zoom": "Zoom",
+  "key.ijmtweaks.config": "Config Menu",
 
   "option.ijmtweaks.darkLoadingOverlay.name": "Dark Loading Overlay",
   "option.ijmtweaks.darkLoadingOverlay.desc": "Set the loading background overlay color to black.",

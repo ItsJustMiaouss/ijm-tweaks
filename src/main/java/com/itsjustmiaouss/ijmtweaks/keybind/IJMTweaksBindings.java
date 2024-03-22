@@ -9,12 +9,20 @@ import org.lwjgl.glfw.GLFW;
 public class IJMTweaksBindings {
 
     public static KeyBinding zoomKeyBinding;
+    public static KeyBinding openConfigBinding;
 
     public static void registerBindings() {
         zoomKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.ijmtweaks.zoom",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_R,
+                "category.ijmtweaks.bindings"
+        ));
+
+        openConfigBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.ijmtweaks.config",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_UNKNOWN,
                 "category.ijmtweaks.bindings"
         ));
     }
