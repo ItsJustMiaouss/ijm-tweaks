@@ -24,7 +24,19 @@ public abstract class GameRendererMixin {
         if (IJMTweaksBindings.zoomKeyBinding.isPressed()) {
             zoomEnabled = true;
             options.smoothCameraEnabled = true;
-            cir.setReturnValue(cir.getReturnValue() * IJMTweaksConfig.get().zoomLevel);
+
+            double zoomLevel =  IJMTweaksConfig.get().zoomLevel;
+
+            double zoomFactor;
+            if (zoomLevel == 0) {
+                zoomFactor = 1.0; // 0% is the default FOV
+            } else if (zoomLevel == 100) {
+                zoomFactor = 0.1; // 100% the max zoom level
+            } else {
+                zoomFactor = 1.0 - (zoomLevel / 100.0 * 0.55); // Approximate the zoom level
+            }
+
+            cir.setReturnValue(cir.getReturnValue() * zoomFactor);
         }
 
         if(!IJMTweaksBindings.zoomKeyBinding.isPressed() && zoomEnabled) {

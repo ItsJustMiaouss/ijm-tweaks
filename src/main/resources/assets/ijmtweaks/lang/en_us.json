@@ -17,7 +17,7 @@
   "option.ijmtweaks.autoJumpOnStairs.name": "Auto-Jump on Stairs",
   "option.ijmtweaks.autoJumpOnStairs.desc": "Automatically enable the auto-jump when climbing stairs.",
   "option.ijmtweaks.zoomLevel.name": "Zoom Level",
-  "option.ijmtweaks.zoomLevel.desc": "Adjust the zoom level. Lower this value to increase the zoom level. The keybinding can be changed in the Minecraft options.",
+  "option.ijmtweaks.zoomLevel.desc": "Adjust the zoom level. The keybinding can be changed in the Minecraft options.",
   "option.ijmtweaks.fireOverlay.name": "Fire Overlay",
   "option.ijmtweaks.fireOverlay.desc": "Minimize the height or disable the visibility of the fire overlay.",
 

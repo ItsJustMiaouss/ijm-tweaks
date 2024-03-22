@@ -3,7 +3,10 @@ package com.itsjustmiaouss.ijmtweaks.config;
 import com.google.gson.GsonBuilder;
 import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import dev.isxander.yacl3.api.*;
-import dev.isxander.yacl3.api.controller.*;
+import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
+import dev.isxander.yacl3.api.controller.EnumControllerBuilder;
+import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
+import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -48,7 +51,7 @@ public class IJMTweaksConfig {
     @SerialEntry public int blockBreakParticle = 0;
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
-    @SerialEntry public double zoomLevel = 0.3;
+    @SerialEntry public int zoomLevel = 85;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -120,7 +123,7 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Double> zoomLevelOpt = Option.<Double>createBuilder()
+            Option<Integer> zoomLevelOpt = Option.<Integer>createBuilder()
                     .name(IJMTweaksConfig.getOptionName("zoomLevel"))
                     .description(OptionDescription.createBuilder().
                             text(IJMTweaksConfig.getDesc("zoomLevel"))
@@ -128,7 +131,8 @@ public class IJMTweaksConfig {
                     .binding(defaults.zoomLevel,
                             () -> config.zoomLevel,
                             newVal -> config.zoomLevel = newVal)
-                    .controller(opt -> DoubleSliderControllerBuilder.create(opt).range(0.1, 0.9).step(0.1))
+                    .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                            .range(0, 100).step(1).formatValue(value -> Text.literal(value + "%")))
                     .build();
 
             Option<FireOverlayType> fireOverlayOpt = Option.<FireOverlayType>createBuilder()
