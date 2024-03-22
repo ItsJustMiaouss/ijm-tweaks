@@ -56,7 +56,7 @@ public class IJMTweaksConfig {
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
         REDUCED,
-        HIDE;
+        HIDDEN;
 
         @Override
         public Text getDisplayName() {

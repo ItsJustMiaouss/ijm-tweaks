@@ -23,6 +23,6 @@
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",
-  "enum.ijmtweaks.fireOverlayType.hide": "Hide"
+  "enum.ijmtweaks.fireOverlayType.hidden": "Hidden"
 
 }

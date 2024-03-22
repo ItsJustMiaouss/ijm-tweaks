@@ -23,7 +23,7 @@ public abstract class InGameOverlayRenderer {
             case REDUCED -> {
                 return -0.5f;
             }
-            case HIDE -> {
+            case HIDDEN -> {
                 return -1;
             }
             default -> {
