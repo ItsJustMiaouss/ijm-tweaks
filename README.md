@@ -14,15 +14,15 @@ A Fabric mod that tweaks the client side of Minecraft.
 
 > Note: Everything is configurable and can be toggled.
 
-### 🔗 Requirement
+### 🔗 Requirements
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)
 - [Yet Another Config Lib](https://modrinth.com/mod/yacl)
 
-### ℹ️ Recommended
+### 🔗 Recommended
 
 - [Mod Menu](https://modrinth.com/mod/modmenu)
 
 ### 📜 License
 
-This project is under the [MIT](https://github.com/ItsJustMiaouss/ijm-tweaks/blob/1.20/LICENSE) license.
+This project is under the [MIT](https://github.com/ItsJustMiaouss/ijm-tweaks?tab=MIT-1-ov-file#readme) license.
