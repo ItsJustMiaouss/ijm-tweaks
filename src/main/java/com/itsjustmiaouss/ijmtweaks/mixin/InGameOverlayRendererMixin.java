@@ -1,12 +1,13 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
+import net.minecraft.client.gui.hud.InGameOverlayRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(net.minecraft.client.gui.hud.InGameOverlayRenderer.class)
-public abstract class InGameOverlayRenderer {
+@Mixin(InGameOverlayRenderer.class)
+public abstract class InGameOverlayRendererMixin {
 
     @ModifyArg(
             method = "renderFireOverlay",
