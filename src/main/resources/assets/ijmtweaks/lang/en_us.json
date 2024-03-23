@@ -23,9 +23,13 @@
   "option.ijmtweaks.fireOverlay.desc": "Minimize the height or disable the visibility of the fire overlay.",
   "option.ijmtweaks.singleItemInventorySwap.name": "Single Item on Inventory Swap",
   "option.ijmtweaks.singleItemInventorySwap.desc": "Get a single item instead of a stack when using the 1-9 keys in the creative inventory.",
+  "option.ijmtweaks.screenshotsFolder.name": "Screenshots Folder Message",
+  "option.ijmtweaks.screenshotsFolder.desc": "Send a message in chat suggesting opening the screenshots folder after a screenshot is taken.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",
-  "enum.ijmtweaks.fireOverlayType.hidden": "Hidden"
+  "enum.ijmtweaks.fireOverlayType.hidden": "Hidden",
+
+  "screenshot.folder": "Open the screenshots folder"
 
 }

@@ -12,6 +12,7 @@
     "InGameOverlayRendererMixin",
     "InteractionManagerMixin",
     "ParticleManagerMixin",
+    "ScreenshotRecorderMixin",
     "SplashOverlayMixin",
     "StairsBlockMixin"
   ]

@@ -12,6 +12,7 @@ A Fabric mod that tweaks the client side of Minecraft.
 - Zoom by holding a keybinding.
 - Lower the height of the fire overlay.
 - Tweaks on the creative inventory.
+- Add a message to open the screenshots folder after taking a screenshot.
 
 > Note: Everything is configurable and can be toggled.
 

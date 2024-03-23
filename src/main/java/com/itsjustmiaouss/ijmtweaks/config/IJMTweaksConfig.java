@@ -53,6 +53,7 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean autoJumpOnStairs = true;
     @SerialEntry public int zoomLevel = 85;
     @SerialEntry public boolean singleItemInventorySwap = true;
+    @SerialEntry public boolean screenshotsFolder = true;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -160,6 +161,18 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
+            Option<Boolean> screenshotsFolderOpt = Option.<Boolean>createBuilder()
+                    .name(IJMTweaksConfig.getOptionName("screenshotsFolder"))
+                    .description(OptionDescription.createBuilder()
+                            .text(IJMTweaksConfig.getDesc("screenshotsFolder"))
+                            .image(IJMTweaksConfig.getImage("screenshots_folder"), IMG_WIDTH, IMG_HEIGHT)
+                            .build())
+                    .binding(defaults.screenshotsFolder,
+                            () -> config.screenshotsFolder,
+                            newVal -> config.screenshotsFolder = newVal)
+                    .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("overlay"))
@@ -175,7 +188,8 @@ public class IJMTweaksConfig {
                                     experienceBarInCreativeOpt,
                                     autoJumpOnStairsOpt,
                                     zoomLevelOpt,
-                                    singleItemInventorySwapOpt
+                                    singleItemInventorySwapOpt,
+                                    screenshotsFolderOpt
                             ))
                             .build())
                     .category(ConfigCategory.createBuilder()
