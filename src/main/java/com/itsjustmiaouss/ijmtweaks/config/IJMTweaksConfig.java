@@ -70,11 +70,7 @@ public class IJMTweaksConfig {
 
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
-            Option<Boolean> darkLoadingScreenOpt = Option.<Boolean>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("darkLoadingOverlay"))
-                    .description(OptionDescription.createBuilder().
-                            text(IJMTweaksConfig.getDesc("darkLoadingOverlay"))
-                            .image(IJMTweaksConfig.getImage("dark_overlay"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Boolean> darkLoadingScreenOpt = IJMTweaksConfig.<Boolean>getGenericOption("darkLoadingOverlay", "dark_overlay")
                     .binding(defaults.darkLoadingOverlay,
                             () -> config.darkLoadingOverlay,
                             newVal -> config.darkLoadingOverlay = newVal)
@@ -82,55 +78,35 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Float> pumpkinOverlayOpacityOpt = Option.<Float>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("pumpkinOverlayOpacity"))
-                    .description(OptionDescription.createBuilder().
-                            text(IJMTweaksConfig.getDesc("pumpkinOverlayOpacity"))
-                            .image(IJMTweaksConfig.getImage("pumpkin_overlay"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Float> pumpkinOverlayOpacityOpt = IJMTweaksConfig.<Float>getGenericOption("pumpkinOverlayOpacity", "pumpkin_overlay")
                     .binding(defaults.pumpkinOverlayOpacity,
                             () -> config.pumpkinOverlayOpacity,
                             newVal -> config.pumpkinOverlayOpacity = newVal)
                     .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0f, 1f).step(0.1f))
                     .build();
 
-            Option<Integer> blockBreakParticleScaleOpt = Option.<Integer>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("blockBreakParticle"))
-                    .description(OptionDescription.createBuilder().
-                            text(IJMTweaksConfig.getDesc("blockBreakParticle"))
-                            .image(IJMTweaksConfig.getImage("break_particles"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Integer> blockBreakParticleScaleOpt = IJMTweaksConfig.<Integer>getGenericOption("blockBreakParticle", "break_particles")
                     .binding(defaults.blockBreakParticle,
                             () -> config.blockBreakParticle,
                             newVal -> config.blockBreakParticle = newVal)
                     .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 4).step(1))
                     .build();
 
-            Option<Boolean> experienceBarInCreativeOpt = Option.<Boolean>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("experienceBarInCreative"))
-                    .description(OptionDescription.createBuilder()
-                            .text(IJMTweaksConfig.getDesc("experienceBarInCreative"))
-                            .image(IJMTweaksConfig.getImage("experience_bar"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Boolean> experienceBarInCreativeOpt = IJMTweaksConfig.<Boolean>getGenericOption("experienceBarInCreative", "experience_bar")
                     .binding(defaults.experienceBarInCreative,
                             () -> config.experienceBarInCreative,
                             newVal -> config.experienceBarInCreative = newVal)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Boolean> autoJumpOnStairsOpt = Option.<Boolean>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("autoJumpOnStairs"))
-                    .description(OptionDescription.createBuilder()
-                            .text(IJMTweaksConfig.getDesc("autoJumpOnStairs"))
-                            .image(IJMTweaksConfig.getImage("auto_jump"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Boolean> autoJumpOnStairsOpt = IJMTweaksConfig.<Boolean>getGenericOption("autoJumpOnStairs", "auto_jump")
                     .binding(defaults.autoJumpOnStairs,
                             () -> config.autoJumpOnStairs,
                             newVal -> config.autoJumpOnStairs = newVal)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Integer> zoomLevelOpt = Option.<Integer>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("zoomLevel"))
-                    .description(OptionDescription.createBuilder().
-                            text(IJMTweaksConfig.getDesc("zoomLevel"))
-                            .image(IJMTweaksConfig.getImage("zoom_level"), IMG_WIDTH, IMG_HEIGHT).build())
+            Option<Integer> zoomLevelOpt = IJMTweaksConfig.<Integer>getGenericOption("zoomLevel", "zoom_level")
                     .binding(defaults.zoomLevel,
                             () -> config.zoomLevel,
                             newVal -> config.zoomLevel = newVal)
@@ -138,36 +114,21 @@ public class IJMTweaksConfig {
                             .range(0, 100).step(1).formatValue(value -> Text.literal(value + "%")))
                     .build();
 
-            Option<FireOverlayType> fireOverlayOpt = Option.<FireOverlayType>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("fireOverlay"))
-                    .description(OptionDescription.createBuilder().
-                            text(IJMTweaksConfig.getDesc("fireOverlay"))
-                            .image(IJMTweaksConfig.getImage("fire_overlay"), IMG_WIDTH, IMG_HEIGHT)
-                            .build())
+            Option<FireOverlayType> fireOverlayOpt = IJMTweaksConfig.<FireOverlayType>getGenericOption("fireOverlay", "fire_overlay")
                     .binding(defaults.fireOverlay,
                             () -> config.fireOverlay,
                             newVal -> config.fireOverlay = newVal)
                     .controller(opt -> EnumControllerBuilder.create(opt).enumClass(IJMTweaksConfig.FireOverlayType.class))
                     .build();
 
-            Option<Boolean> singleItemInventorySwapOpt = Option.<Boolean>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("singleItemInventorySwap"))
-                    .description(OptionDescription.createBuilder()
-                            .text(IJMTweaksConfig.getDesc("singleItemInventorySwap"))
-                            .image(IJMTweaksConfig.getImage("inventory_swap"), IMG_WIDTH, IMG_HEIGHT)
-                            .build())
+            Option<Boolean> singleItemInventorySwapOpt = IJMTweaksConfig.<Boolean>getGenericOption("singleItemInventorySwap", "inventory_swap")
                     .binding(defaults.singleItemInventorySwap,
                             () -> config.singleItemInventorySwap,
                             newVal -> config.singleItemInventorySwap = newVal)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Boolean> screenshotsFolderOpt = Option.<Boolean>createBuilder()
-                    .name(IJMTweaksConfig.getOptionName("screenshotsFolder"))
-                    .description(OptionDescription.createBuilder()
-                            .text(IJMTweaksConfig.getDesc("screenshotsFolder"))
-                            .image(IJMTweaksConfig.getImage("screenshots_folder"), IMG_WIDTH, IMG_HEIGHT)
-                            .build())
+            Option<Boolean> screenshotsFolderOpt = IJMTweaksConfig.<Boolean>getGenericOption("screenshotsFolder", "screenshots_folder")
                     .binding(defaults.screenshotsFolder,
                             () -> config.screenshotsFolder,
                             newVal -> config.screenshotsFolder = newVal)
@@ -201,6 +162,15 @@ public class IJMTweaksConfig {
                             .build())
                     .save(IJMTweaksConfig::save);
         }));
+    }
+
+    private static <T> Option.Builder<T> getGenericOption(String name, String image) {
+        return Option.<T>createBuilder()
+                .name(IJMTweaksConfig.getOptionName(name))
+                .description(OptionDescription.createBuilder()
+                        .text(IJMTweaksConfig.getDesc(name))
+                        .image(IJMTweaksConfig.getImage(image), IMG_WIDTH, IMG_HEIGHT)
+                        .build());
     }
 
     private static Text getCategoryName(String category) {
