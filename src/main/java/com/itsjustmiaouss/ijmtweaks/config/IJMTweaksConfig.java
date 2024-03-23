@@ -118,7 +118,8 @@ public class IJMTweaksConfig {
             Option<Boolean> autoJumpOnStairsOpt = Option.<Boolean>createBuilder()
                     .name(IJMTweaksConfig.getOptionName("autoJumpOnStairs"))
                     .description(OptionDescription.createBuilder()
-                            .text(IJMTweaksConfig.getDesc("autoJumpOnStairs")).build())
+                            .text(IJMTweaksConfig.getDesc("autoJumpOnStairs"))
+                            .image(IJMTweaksConfig.getImage("auto_jump"), IMG_WIDTH, IMG_HEIGHT).build())
                     .binding(defaults.autoJumpOnStairs,
                             () -> config.autoJumpOnStairs,
                             newVal -> config.autoJumpOnStairs = newVal)
