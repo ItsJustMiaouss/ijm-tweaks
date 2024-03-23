@@ -21,6 +21,8 @@
   "option.ijmtweaks.zoomLevel.desc": "Adjust the zoom level. The keybinding can be changed in the Minecraft options.",
   "option.ijmtweaks.fireOverlay.name": "Fire Overlay",
   "option.ijmtweaks.fireOverlay.desc": "Minimize the height or disable the visibility of the fire overlay.",
+  "option.ijmtweaks.singleItemInventorySwap.name": "Single Item on Inventory Swap",
+  "option.ijmtweaks.singleItemInventorySwap.desc": "Get a single item instead of a stack when using the 1-9 keys in the creative inventory.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",

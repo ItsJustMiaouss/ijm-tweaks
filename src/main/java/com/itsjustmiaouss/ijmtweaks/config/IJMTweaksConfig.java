@@ -52,6 +52,7 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
     @SerialEntry public int zoomLevel = 85;
+    @SerialEntry public boolean singleItemInventorySwap = true;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -147,6 +148,18 @@ public class IJMTweaksConfig {
                     .controller(opt -> EnumControllerBuilder.create(opt).enumClass(IJMTweaksConfig.FireOverlayType.class))
                     .build();
 
+            Option<Boolean> singleItemInventorySwapOpt = Option.<Boolean>createBuilder()
+                    .name(IJMTweaksConfig.getOptionName("singleItemInventorySwap"))
+                    .description(OptionDescription.createBuilder()
+                            .text(IJMTweaksConfig.getDesc("singleItemInventorySwap"))
+                            .image(IJMTweaksConfig.getImage("inventory_swap"), IMG_WIDTH, IMG_HEIGHT)
+                            .build())
+                    .binding(defaults.singleItemInventorySwap,
+                            () -> config.singleItemInventorySwap,
+                            newVal -> config.singleItemInventorySwap = newVal)
+                    .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("overlay"))
@@ -161,7 +174,8 @@ public class IJMTweaksConfig {
                             .options(List.of(
                                     experienceBarInCreativeOpt,
                                     autoJumpOnStairsOpt,
-                                    zoomLevelOpt
+                                    zoomLevelOpt,
+                                    singleItemInventorySwapOpt
                             ))
                             .build())
                     .category(ConfigCategory.createBuilder()

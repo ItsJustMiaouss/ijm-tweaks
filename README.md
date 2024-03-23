@@ -11,6 +11,7 @@ A Fabric mod that tweaks the client side of Minecraft.
 - Change the opacity of the pumpkin overlay.
 - Zoom by holding a keybinding.
 - Lower the height of the fire overlay.
+- Tweaks on the creative inventory.
 
 > Note: Everything is configurable and can be toggled.
 
