@@ -25,16 +25,9 @@ public abstract class GameRendererMixin {
             zoomEnabled = true;
             options.smoothCameraEnabled = true;
 
-            double zoomLevel =  IJMTweaksConfig.get().zoomLevel;
-
-            double zoomFactor;
-            if (zoomLevel == 0) {
-                zoomFactor = 1.0; // 0% is the default FOV
-            } else if (zoomLevel == 100) {
-                zoomFactor = 0.1; // 100% the max zoom level
-            } else {
-                zoomFactor = 1.0 - (zoomLevel / 100.0 * 0.55); // Approximate the zoom level
-            }
+            float zoomLevel = IJMTweaksConfig.get().zoomLevel;
+            double zoomFactor =  (1.0 - (zoomLevel / 100));
+            if(zoomFactor == 0) zoomFactor = 0.05;
 
             cir.setReturnValue(cir.getReturnValue() * zoomFactor);
         }

@@ -51,7 +51,7 @@ public class IJMTweaksConfig {
     @SerialEntry public int blockBreakParticle = 0;
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
-    @SerialEntry public int zoomLevel = 85;
+    @SerialEntry public int zoomLevel = 70;
     @SerialEntry public boolean singleItemInventorySwap = true;
     @SerialEntry public boolean screenshotsFolder = true;
 
@@ -111,7 +111,7 @@ public class IJMTweaksConfig {
                             () -> config.zoomLevel,
                             newVal -> config.zoomLevel = newVal)
                     .controller(opt -> IntegerSliderControllerBuilder.create(opt)
-                            .range(0, 100).step(1).formatValue(value -> Text.literal(value + "%")))
+                            .range(0, 100).step(10).formatValue(value -> Text.literal(value + "%")))
                     .build();
 
             Option<FireOverlayType> fireOverlayOpt = IJMTweaksConfig.<FireOverlayType>getGenericOption("fireOverlay", "fire_overlay")
