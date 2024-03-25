@@ -5,7 +5,6 @@ import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder;
-import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
@@ -47,7 +46,7 @@ public class IJMTweaksConfig {
     }
 
     @SerialEntry public boolean darkLoadingOverlay = true;
-    @SerialEntry public float pumpkinOverlayOpacity = 0.4f;
+    @SerialEntry public int pumpkinOverlayOpacity = 40;
     @SerialEntry public int blockBreakParticle = 0;
     @SerialEntry public boolean experienceBarInCreative = true;
     @SerialEntry public boolean autoJumpOnStairs = true;
@@ -78,11 +77,12 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Float> pumpkinOverlayOpacityOpt = IJMTweaksConfig.<Float>getGenericOption("pumpkinOverlayOpacity", "pumpkin_overlay")
+            Option<Integer> pumpkinOverlayOpacityOpt = IJMTweaksConfig.<Integer>getGenericOption("pumpkinOverlayOpacity", "pumpkin_overlay")
                     .binding(defaults.pumpkinOverlayOpacity,
                             () -> config.pumpkinOverlayOpacity,
                             newVal -> config.pumpkinOverlayOpacity = newVal)
-                    .controller(opt -> FloatSliderControllerBuilder.create(opt).range(0f, 1f).step(0.1f))
+                    .controller(opt -> IntegerSliderControllerBuilder.create(opt)
+                            .range(0, 100).step(10).formatValue(value -> Text.literal(value + "%")))
                     .build();
 
             Option<Integer> blockBreakParticleScaleOpt = IJMTweaksConfig.<Integer>getGenericOption("blockBreakParticle", "break_particles")

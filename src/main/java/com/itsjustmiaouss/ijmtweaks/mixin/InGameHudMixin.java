@@ -20,7 +20,7 @@ public abstract class InGameHudMixin {
     )
     private float pumpkinOverlayOpacity(float opacity) {
         IJMTweaksConfig config = IJMTweaksConfig.get();
-        return config.pumpkinOverlayOpacity;
+        return (float) config.pumpkinOverlayOpacity / 100;
     }
 
 }
