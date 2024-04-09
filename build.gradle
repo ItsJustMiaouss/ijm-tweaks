@@ -32,8 +32,8 @@ processResources {
 	def properties = [
 			"version": project.version,
 			"minecraft_min": minecraft_min,
-			"minecraft_max": minecraft_max,
-			"fabric_version": fabric_version
+			"fabric_version": fabric_version,
+			"fabric_api_min": fabric_api_min
 	]
 
 	inputs.properties(properties)
