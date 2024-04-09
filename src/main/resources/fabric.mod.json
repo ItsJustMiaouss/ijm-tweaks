@@ -35,12 +35,5 @@
 	},
 	"suggests": {
 		"modmenu": "*"
-	},
-	"custom": {
-		"modmenu": {
-			"links": {
-				"modmenu.discord": "https://itsjustmiaouss.com/discord"
-			}
-		}
 	}
 }
