@@ -53,6 +53,7 @@ public class IJMTweaksConfig {
     @SerialEntry public int zoomLevel = 70;
     @SerialEntry public boolean singleItemInventorySwap = true;
     @SerialEntry public boolean screenshotsFolder = true;
+    @SerialEntry public boolean debugInvisibleEntities = false;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -135,6 +136,13 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
+            Option<Boolean> debugInvisibleEntitiesOpt = IJMTweaksConfig.<Boolean>getGenericOption("debugInvisibleEntities", "debug_invisible_entities")
+                    .binding(defaults.debugInvisibleEntities,
+                            () -> config.debugInvisibleEntities,
+                            newVal -> config.debugInvisibleEntities = newVal)
+                    .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("overlay"))
@@ -157,7 +165,8 @@ public class IJMTweaksConfig {
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("rendering"))
                             .options(List.of(
-                                    blockBreakParticleScaleOpt
+                                    blockBreakParticleScaleOpt,
+                                    debugInvisibleEntitiesOpt
                             ))
                             .build())
                     .save(IJMTweaksConfig::save);

@@ -25,6 +25,8 @@
   "option.ijmtweaks.singleItemInventorySwap.desc": "Get a single item instead of a stack when using the 1-9 keys in the creative inventory.",
   "option.ijmtweaks.screenshotsFolder.name": "Screenshots Folder Message",
   "option.ijmtweaks.screenshotsFolder.desc": "Send a message in chat suggesting opening the screenshots folder after a screenshot is taken.",
+  "option.ijmtweaks.debugInvisibleEntities.name": "Debug Invisible Entities",
+  "option.ijmtweaks.debugInvisibleEntities.desc": "Render the debug hitboxes of invisible entities when using F3 + B. This feature is only available for players in creative or spectator.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",

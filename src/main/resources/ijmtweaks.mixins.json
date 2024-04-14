@@ -7,6 +7,7 @@
   },
   "client": [
     "CreativeInventoryScreenMixin",
+    "EntityRenderDispatcherMixin",
     "GameRendererMixin",
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
