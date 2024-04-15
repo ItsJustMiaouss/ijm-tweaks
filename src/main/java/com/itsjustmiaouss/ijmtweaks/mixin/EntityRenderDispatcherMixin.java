@@ -15,9 +15,12 @@ public abstract class EntityRenderDispatcherMixin {
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isInvisible()Z"))
     private boolean shouldHideInvisibleEntitiesInDebug(Entity instance) {
         ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
-        if (interactionManager == null || interactionManager.getCurrentGameMode().isSurvivalLike()) return true;
 
-        return !IJMTweaksConfig.get().debugInvisibleEntities;
+        if (IJMTweaksConfig.get().debugInvisibleEntities) {
+            return instance.isInvisible() && interactionManager != null && interactionManager.getCurrentGameMode().isSurvivalLike();
+        }
+
+        return instance.isInvisible();
     }
 
 }
