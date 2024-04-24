@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public abstract class InGameHudMixin {
 
     @ModifyArg(
-            method = "render",
+            method = "renderMiscOverlays",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/gui/hud/InGameHud;renderOverlay(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/util/Identifier;F)V",
