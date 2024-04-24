@@ -2,7 +2,7 @@
 
 A Fabric mod that tweaks the client side of Minecraft.
 
-![Mod configuration image](https://cdn.modrinth.com/data/vevAjqG0/images/438d4d784cfef29b1f3931a36c6ae47cd71e8f7f.png)
+![Mod configuration image](https://github.com/ItsJustMiaouss/ijm-tweaks/assets/59478524/16d5cc54-8786-46de-a113-85076e6a238d)
 
 ### 📌Features
 
