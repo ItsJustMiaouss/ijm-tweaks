@@ -25,7 +25,7 @@ dependencies {
 	modApi "com.terraformersmc:modmenu:${project.mod_menu}"
 
 	// YACL
-	modImplementation "dev.isxander.yacl:yet-another-config-lib-fabric:${project.yacl}"
+	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl}"
 }
 
 processResources {
