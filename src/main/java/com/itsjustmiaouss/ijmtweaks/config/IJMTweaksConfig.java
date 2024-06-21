@@ -25,7 +25,7 @@ public class IJMTweaksConfig {
     public static final int IMG_WIDTH = 1920;
     public static final int IMG_HEIGHT = 1080;
     private static final ConfigClassHandler<IJMTweaksConfig> HANDLER = ConfigClassHandler.createBuilder(IJMTweaksConfig.class)
-            .id(new Identifier(IJMTweaks.MOD_ID, "ijmtweaks"))
+            .id(Identifier.of(IJMTweaks.MOD_ID, "ijmtweaks"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve(IJMTweaks.MOD_ID + ".json"))
                     .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
@@ -195,6 +195,6 @@ public class IJMTweaksConfig {
     }
 
     private static Identifier getImage(String name) {
-        return new Identifier(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
+        return Identifier.of(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
     }
 }
