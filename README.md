@@ -28,6 +28,10 @@ A Fabric mod that tweaks the client side of Minecraft.
 
 - [Mod Menu](https://modrinth.com/mod/modmenu)
 
+### 🔗 Compatible with
+
+- [Fabrishot](https://modrinth.com/mod/fabrishot)
+
 ### 📜 License
 
 This project is under the [MIT](https://github.com/ItsJustMiaouss/ijm-tweaks?tab=MIT-1-ov-file#readme) license.
