@@ -12,7 +12,6 @@ import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -142,7 +141,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Boolean> debugInvisibleEntitiesOpt = IJMTweaksConfig.<Boolean>getGenericOption(
-                    "debugInvisibleEntities", "debug_invisible_entities", OptionRequirement.CREATIVE_ONLY
+                    "debugInvisibleEntities", "debug_invisible_entities", OptionRequirement.NON_SURVIVAL_OP
                     )
                     .binding(defaults.debugInvisibleEntities,
                             () -> config.debugInvisibleEntities,
@@ -150,7 +149,9 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Boolean> fullbrightOpt = IJMTweaksConfig.<Boolean>getGenericOption("fullbright", "fullbright")
+            Option<Boolean> fullbrightOpt = IJMTweaksConfig.<Boolean>getGenericOption(
+                    "fullbright", "fullbright", OptionRequirement.NON_SURVIVAL
+                    )
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
                             newVal -> config.fullbright = newVal)
@@ -250,23 +251,5 @@ public class IJMTweaksConfig {
 
     private static Identifier getImage(String name) {
         return new Identifier(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
-    }
-
-    protected enum OptionRequirement {
-        CREATIVE_ONLY("creativeOnly", Formatting.RED);
-
-        private final String translationKey;
-        private final Formatting[] formattings;
-
-        OptionRequirement(String translationKey, Formatting... formattings) {
-            this.translationKey = translationKey;
-            this.formattings = formattings;
-        }
-
-        public Text getText() {
-            return Text.translatable(
-                    String.format("option.%s.description.%s", IJMTweaks.MOD_ID, this.translationKey)
-            ).formatted(this.formattings);
-        }
     }
 }
