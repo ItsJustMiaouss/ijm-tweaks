@@ -45,6 +45,8 @@
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",
   "enum.ijmtweaks.fireOverlayType.hidden": "Hidden",
 
-  "screenshot.folder": "Open the screenshots folder"
+  "screenshot.folder": "Open the screenshots folder",
 
+  "overlay.ijmtweaks.fullbright.enabled": "Enabled fullbright",
+  "overlay.ijmtweaks.fullbright.disabled": "Disabled fullbright"
 }
