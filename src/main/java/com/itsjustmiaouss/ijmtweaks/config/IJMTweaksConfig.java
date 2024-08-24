@@ -50,10 +50,10 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean darkLoadingOverlay = true;
     @SerialEntry public int pumpkinOverlayOpacity = 40;
     @SerialEntry public int blockBreakParticle = 0;
-    @SerialEntry public boolean experienceBarInCreative = true;
+    @SerialEntry public boolean experienceBarInCreative = false;
     @SerialEntry public boolean autoJumpOnStairs = true;
     @SerialEntry public int zoomLevel = 70;
-    @SerialEntry public boolean singleItemInventorySwap = true;
+    @SerialEntry public boolean singleItemInventorySwap = false;
     @SerialEntry public boolean screenshotsFolder = true;
     @SerialEntry public boolean debugInvisibleEntities = false;
     @SerialEntry public boolean fullbright = false;
