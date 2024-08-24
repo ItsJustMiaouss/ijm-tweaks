@@ -31,7 +31,7 @@ public abstract class ScreenshotRecorderMixin {
         IJMTweaksConfig config = IJMTweaksConfig.get();
         if(!config.screenshotsFolder) return;
 
-        MutableText text = Text.translatable("screenshot.folder")
+        MutableText text = Text.translatable("chat.ijmtweaks.screenshot.message")
                 .formatted(Formatting.UNDERLINE)
                 .styled(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getParent())));
 
