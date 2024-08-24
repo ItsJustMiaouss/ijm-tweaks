@@ -57,6 +57,7 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean singleItemInventorySwap = true;
     @SerialEntry public boolean screenshotsFolder = true;
     @SerialEntry public boolean debugInvisibleEntities = false;
+    @SerialEntry public boolean fullbright = false;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -149,6 +150,13 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
+            Option<Boolean> fullbrightOpt = IJMTweaksConfig.<Boolean>getGenericOption("fullbright", "fullbright")
+                    .binding(defaults.fullbright,
+                            () -> config.fullbright,
+                            newVal -> config.fullbright = newVal)
+                    .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
+                    .build();
+
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
                     // Screen
                     .category(ConfigCategory.createBuilder()
@@ -194,7 +202,8 @@ public class IJMTweaksConfig {
                             .group(OptionGroup.createBuilder()
                                     .name(IJMTweaksConfig.getGroupName("rendering"))
                                     .options(List.of(
-                                            blockBreakParticleScaleOpt
+                                            blockBreakParticleScaleOpt,
+                                            fullbrightOpt
                                     ))
                                     .build())
                             .group(OptionGroup.createBuilder()

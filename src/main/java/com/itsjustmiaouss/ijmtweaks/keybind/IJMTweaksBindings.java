@@ -10,6 +10,7 @@ public class IJMTweaksBindings {
 
     public static KeyBinding zoomKeyBinding;
     public static KeyBinding openConfigBinding;
+    public static KeyBinding fullbrightKeyBinding;
 
     public static void registerBindings() {
         zoomKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
@@ -21,6 +22,13 @@ public class IJMTweaksBindings {
 
         openConfigBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.ijmtweaks.config",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_UNKNOWN,
+                "category.ijmtweaks.bindings"
+        ));
+
+        fullbrightKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.ijmtweaks.fullbright",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_UNKNOWN,
                 "category.ijmtweaks.bindings"
