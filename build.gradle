@@ -1,4 +1,7 @@
+import me.modmuss50.mpp.ReleaseType
+
 plugins {
+	id "me.modmuss50.mod-publish-plugin" version "0.6.3"
 	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
@@ -61,5 +64,51 @@ java {
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
+	}
+}
+
+publishMods {
+	file = remapJar.archiveFile
+	changelog = rootProject.file("CHANGELOG.md").text
+	type = ReleaseType.STABLE
+	modLoaders.add("fabric")
+
+	modrinth {
+		projectId = "vevAjqG0"
+		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+
+		minecraftVersionRange {
+			start = "1.21"
+			end = "1.21.1"
+		}
+
+		requires("fabric-api", "yacl")
+		optional("modmenu")
+	}
+
+	curseforge {
+		projectId = "994872"
+		projectSlug = "ijm-tweaks"
+		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+
+		minecraftVersionRange {
+			start = "1.21"
+			end = "1.21.1"
+		}
+
+		javaVersions.add(JavaVersion.VERSION_21)
+
+		clientRequired = true
+		serverRequired = false
+
+		requires("fabric-api", "yacl")
+		optional("modmenu")
+	}
+
+	github {
+		repository = "ItsJustMiaouss/ijm-tweaks"
+		accessToken = providers.environmentVariable("GITHUB_TOKEN")
+		commitish = "1.21"
+		tagName = "v${mod_version}"
 	}
 }
