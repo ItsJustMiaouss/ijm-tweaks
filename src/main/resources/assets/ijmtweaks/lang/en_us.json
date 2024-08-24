@@ -13,6 +13,7 @@
 
   "key.ijmtweaks.zoom": "Zoom",
   "key.ijmtweaks.config": "Config Menu",
+  "key.ijmtweaks.fullbright": "Toggle Fullbright",
 
   "option.ijmtweaks.description.creativeOnly": "Only available for players in creative or spectator.",
 
@@ -36,6 +37,8 @@
   "option.ijmtweaks.screenshotsFolder.desc": "Send a message in chat suggesting opening the screenshots folder after a screenshot is taken.",
   "option.ijmtweaks.debugInvisibleEntities.name": "Debug Invisible Entities",
   "option.ijmtweaks.debugInvisibleEntities.desc": "Render the debug hitboxes of invisible entities when using F3 + B.",
+  "option.ijmtweaks.fullbright.name": "Fullbright",
+  "option.ijmtweaks.fullbright.desc": "Set the game's brightness to an higher value to be able to see in the dark.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",

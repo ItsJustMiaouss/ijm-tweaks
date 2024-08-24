@@ -12,6 +12,7 @@
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
     "InteractionManagerMixin",
+    "LightmapTextureManagerMixin",
     "ParticleManagerMixin",
     "ScreenshotRecorderMixin",
     "SplashOverlayMixin",
