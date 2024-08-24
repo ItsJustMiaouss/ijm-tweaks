@@ -15,7 +15,8 @@ A Fabric mod that tweaks the client side of Minecraft.
 - Lower the height of the fire overlay.
 - Tweaks on the creative inventory.
 - Add a message to open the screenshots folder after taking a screenshot.
-- An option to render the hitboxes of the invisible entities when using F3 + B. This feature is only available for players in creative or spectator.
+- An option to render the hitboxes of the invisible entities when using F3 + B. Require to be OP and in a non survival-like gamemode on a dedicated server..
+- A fullbright option that can be toggled with a keybinding. Required to be in a non survival-like gamemode on a dedicated server.
 
 > Note: Everything is configurable and can be toggled.
 
