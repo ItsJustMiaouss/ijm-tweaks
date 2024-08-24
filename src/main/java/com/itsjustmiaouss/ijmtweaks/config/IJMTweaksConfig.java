@@ -10,8 +10,11 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -70,6 +73,7 @@ public class IJMTweaksConfig {
 
     public static YetAnotherConfigLib getScreen() {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
+            // Config Options
             Option<Boolean> darkLoadingScreenOpt = IJMTweaksConfig.<Boolean>getGenericOption("darkLoadingOverlay", "dark_overlay")
                     .binding(defaults.darkLoadingOverlay,
                             () -> config.darkLoadingOverlay,
@@ -136,7 +140,9 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            Option<Boolean> debugInvisibleEntitiesOpt = IJMTweaksConfig.<Boolean>getGenericOption("debugInvisibleEntities", "debug_invisible_entities")
+            Option<Boolean> debugInvisibleEntitiesOpt = IJMTweaksConfig.<Boolean>getGenericOption(
+                    "debugInvisibleEntities", "debug_invisible_entities", OptionRequirement.CREATIVE_ONLY
+                    )
                     .binding(defaults.debugInvisibleEntities,
                             () -> config.debugInvisibleEntities,
                             newVal -> config.debugInvisibleEntities = newVal)
@@ -144,40 +150,73 @@ public class IJMTweaksConfig {
                     .build();
 
             return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
+                    // Screen
                     .category(ConfigCategory.createBuilder()
-                            .name(IJMTweaksConfig.getCategoryName("overlay"))
-                            .options(List.of(
-                                    darkLoadingScreenOpt,
-                                    pumpkinOverlayOpacityOpt,
-                                    fireOverlayOpt
-                            ))
+                            .name(IJMTweaksConfig.getCategoryName("screen"))
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("overlay"))
+                                    .options(List.of(
+                                            darkLoadingScreenOpt,
+                                            pumpkinOverlayOpacityOpt,
+                                            fireOverlayOpt
+                                    ))
+                                    .build())
                             .build())
+
+                    // Utility
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("utility"))
-                            .options(List.of(
-                                    experienceBarInCreativeOpt,
-                                    autoJumpOnStairsOpt,
-                                    zoomLevelOpt,
-                                    singleItemInventorySwapOpt,
-                                    screenshotsFolderOpt
-                            ))
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("general"))
+                                    .options(List.of(
+                                            zoomLevelOpt,
+                                            screenshotsFolderOpt
+                                    ))
+                                    .build())
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("movement"))
+                                    .options(List.of(
+                                            autoJumpOnStairsOpt
+                                    ))
+                                    .build())
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("creative"))
+                                    .options(List.of(
+                                            experienceBarInCreativeOpt,
+                                            singleItemInventorySwapOpt
+                                    ))
+                                    .build())
                             .build())
+
+                    // Visual
                     .category(ConfigCategory.createBuilder()
-                            .name(IJMTweaksConfig.getCategoryName("rendering"))
-                            .options(List.of(
-                                    blockBreakParticleScaleOpt,
-                                    debugInvisibleEntitiesOpt
-                            ))
+                            .name(IJMTweaksConfig.getCategoryName("visual"))
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("rendering"))
+                                    .options(List.of(
+                                            blockBreakParticleScaleOpt
+                                    ))
+                                    .build())
+                            .group(OptionGroup.createBuilder()
+                                    .name(IJMTweaksConfig.getGroupName("debug"))
+                                    .options(List.of(
+                                            debugInvisibleEntitiesOpt
+                                    ))
+                                    .build())
                             .build())
                     .save(IJMTweaksConfig::save);
         }));
     }
 
     private static <T> Option.Builder<T> getGenericOption(String name, String image) {
+        return getGenericOption(name, image, null);
+    }
+
+    private static <T> Option.Builder<T> getGenericOption(String name, String image, @Nullable OptionRequirement requirement) {
         return Option.<T>createBuilder()
                 .name(IJMTweaksConfig.getOptionName(name))
                 .description(OptionDescription.createBuilder()
-                        .text(IJMTweaksConfig.getDesc(name))
+                        .text(IJMTweaksConfig.getDesc(name, requirement))
                         .image(IJMTweaksConfig.getImage(image), IMG_WIDTH, IMG_HEIGHT)
                         .build());
     }
@@ -186,15 +225,39 @@ public class IJMTweaksConfig {
         return Text.translatable(String.format("category.%s.%s", IJMTweaks.MOD_ID, category));
     }
 
+    private static Text getGroupName(String group) {
+        return Text.translatable(String.format("group.%s.%s.name", IJMTweaks.MOD_ID, group));
+    }
+
     private static Text getOptionName(String option) {
         return Text.translatable(String.format("option.%s.%s.name", IJMTweaks.MOD_ID, option));
     }
 
-    private static Text getDesc(String option) {
-        return Text.translatable(String.format("option.%s.%s.desc", IJMTweaks.MOD_ID, option));
+    private static Text getDesc(String option, @Nullable OptionRequirement requirement) {
+        MutableText text = Text.translatable(String.format("option.%s.%s.desc", IJMTweaks.MOD_ID, option));
+        if (requirement != null) text.append(Text.literal("\n").append(requirement.getText()));
+        return text;
     }
 
     private static Identifier getImage(String name) {
         return new Identifier(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
+    }
+
+    protected enum OptionRequirement {
+        CREATIVE_ONLY("creativeOnly", Formatting.RED);
+
+        private final String translationKey;
+        private final Formatting[] formattings;
+
+        OptionRequirement(String translationKey, Formatting... formattings) {
+            this.translationKey = translationKey;
+            this.formattings = formattings;
+        }
+
+        public Text getText() {
+            return Text.translatable(
+                    String.format("option.%s.description.%s", IJMTweaks.MOD_ID, this.translationKey)
+            ).formatted(this.formattings);
+        }
     }
 }
