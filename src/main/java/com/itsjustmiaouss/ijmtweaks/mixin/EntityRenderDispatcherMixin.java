@@ -1,8 +1,8 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerInteractionManager;
+import com.itsjustmiaouss.ijmtweaks.config.OptionRequirement;
+import com.itsjustmiaouss.ijmtweaks.permission.Permission;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,10 +14,8 @@ public abstract class EntityRenderDispatcherMixin {
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isInvisible()Z"))
     private boolean shouldHideInvisibleEntitiesInDebug(Entity instance) {
-        ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
-
         if (IJMTweaksConfig.get().debugInvisibleEntities) {
-            return instance.isInvisible() && interactionManager != null && interactionManager.getCurrentGameMode().isSurvivalLike();
+            return instance.isInvisible() && !Permission.hasOptionRequirement(OptionRequirement.NON_SURVIVAL_OP);
         }
 
         return instance.isInvisible();
