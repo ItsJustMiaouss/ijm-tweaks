@@ -15,7 +15,8 @@
   "key.ijmtweaks.config": "Config Menu",
   "key.ijmtweaks.fullbright": "Toggle Fullbright",
 
-  "option.ijmtweaks.description.creativeOnly": "Only available for players in creative or spectator.",
+  "option.ijmtweaks.description.nonSurvival": "Require to be in a non survival-like gamemode when playing on a dedicated server.",
+  "option.ijmtweaks.description.nonSurvivalOp": "Require to be OP and in a non survival-like gamemode when playing on a dedicated server.",
 
   "option.ijmtweaks.darkLoadingOverlay.name": "Dark Loading Overlay",
   "option.ijmtweaks.darkLoadingOverlay.desc": "Set the loading background overlay color to black.",
