@@ -75,7 +75,7 @@ publishMods {
 
 	modrinth {
 		projectId = "vevAjqG0"
-		accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
 			start = "1.21"
@@ -89,7 +89,7 @@ publishMods {
 	curseforge {
 		projectId = "994872"
 		projectSlug = "ijm-tweaks"
-		accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
 			start = "1.21"
@@ -107,7 +107,7 @@ publishMods {
 
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
-		accessToken = providers.environmentVariable("GITHUB_TOKEN")
+		accessToken = providers.gradleProperty("githubToken")
 		commitish = "1.21"
 		tagName = "v${mod_version}"
 	}
