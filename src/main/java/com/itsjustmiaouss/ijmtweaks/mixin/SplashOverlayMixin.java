@@ -1,8 +1,8 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.SplashOverlay;
+import net.minecraft.client.texture.TextureManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -18,7 +18,7 @@ public abstract class SplashOverlayMixin {
     @Shadow @Final private static int MONOCHROME_BLACK;
 
     @Inject(method = "init", at = @At("TAIL"))
-    private static void forceMonochromeScreen(MinecraftClient client, CallbackInfo ci) {
+    private static void forceMonochromeScreen(TextureManager textureManager, CallbackInfo ci) {
         IJMTweaksConfig config = IJMTweaksConfig.get();
         if(config.darkLoadingOverlay) {
             MOJANG_RED = MONOCHROME_BLACK;
