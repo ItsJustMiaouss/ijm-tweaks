@@ -17,8 +17,8 @@ public abstract class GameRendererMixin {
 
     @Unique boolean zoomEnabled = false;
 
-    @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
-    private void setZoomFov(Camera camera, float tickDelta, boolean changingFov, CallbackInfoReturnable<Double> cir) {
+    @Inject(method = "getFov", at = @At(value = "RETURN", ordinal = 1), cancellable = true)
+    private void setZoomFov(Camera camera, float tickDelta, boolean changingFov, CallbackInfoReturnable<Float> cir) {
         GameOptions options = MinecraftClient.getInstance().options;
 
         if (IJMTweaksBindings.zoomKeyBinding.isPressed()) {
@@ -26,8 +26,8 @@ public abstract class GameRendererMixin {
             options.smoothCameraEnabled = true;
 
             float zoomLevel = IJMTweaksConfig.get().zoomLevel;
-            double zoomFactor =  (1.0 - (zoomLevel / 100));
-            if(zoomFactor == 0) zoomFactor = 0.05;
+            float zoomFactor =  (1.0f - (zoomLevel / 100f));
+            if(zoomFactor == 0) zoomFactor = 0.05f;
 
             cir.setReturnValue(cir.getReturnValue() * zoomFactor);
         }
