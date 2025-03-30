@@ -3,17 +3,20 @@ package com.itsjustmiaouss.ijmtweaks.mixin;
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import com.itsjustmiaouss.ijmtweaks.config.OptionRequirement;
 import com.itsjustmiaouss.ijmtweaks.permission.Permission;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.state.EntityRenderState;
+import net.minecraft.entity.Entity;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(EntityRenderDispatcher.class)
-public abstract class EntityRenderDispatcherMixin {
+@Mixin(EntityRenderer.class)
+public abstract class EntityRenderDispatcherMixin<T extends Entity, S extends EntityRenderState> {
 
     @Redirect(
-            method = "render(Lnet/minecraft/entity/Entity;DDDFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/client/render/entity/EntityRenderer;)V",
-            at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/entity/state/EntityRenderState;invisible:Z")
+            method = "updateRenderState",
+            at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/entity/state/EntityRenderState;invisible:Z", opcode = Opcodes.GETFIELD)
     )
     private boolean shouldHideInvisibleEntitiesInDebug(EntityRenderState instance) {
         if (IJMTweaksConfig.get().debugInvisibleEntities) {

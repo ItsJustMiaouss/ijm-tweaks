@@ -1,12 +1,14 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
+import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.util.ScreenshotRecorder;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +21,7 @@ import java.util.function.Consumer;
 public abstract class ScreenshotRecorderMixin {
 
     @Inject(
-            method = "method_1661",
+            method = "method_22691",
             at = @At(
                     value = "INVOKE",
                     target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V",
@@ -33,7 +35,7 @@ public abstract class ScreenshotRecorderMixin {
 
         MutableText text = Text.translatable("chat.ijmtweaks.screenshot.message")
                 .formatted(Formatting.UNDERLINE)
-                .styled(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getParent())));
+                .styled(style -> style.withClickEvent(new ClickEvent.OpenFile(file.getParent())));
 
         consumer.accept(text);
     }

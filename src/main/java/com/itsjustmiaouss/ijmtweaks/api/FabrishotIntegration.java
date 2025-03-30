@@ -17,7 +17,7 @@ public class FabrishotIntegration {
 
             MutableText text = Text.translatable("chat.ijmtweaks.screenshot.message")
                     .formatted(Formatting.UNDERLINE)
-                    .styled(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, path.getParent().toString())));
+                    .styled(style -> style.withClickEvent(new ClickEvent.OpenFile(path.getParent().toString())));
 
             MinecraftClient instance = MinecraftClient.getInstance();
             instance.execute(() -> instance.inGameHud.getChatHud().addMessage(text));
