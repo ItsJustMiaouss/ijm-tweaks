@@ -1,7 +1,7 @@
 import me.modmuss50.mpp.ReleaseType
 
 plugins {
-	id "me.modmuss50.mod-publish-plugin" version "0.8.1"
+	id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
@@ -78,8 +78,8 @@ publishMods {
 		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
-			start = "1.21.4"
-			end = "1.21.4"
+			start = "1.21.5"
+			end = "1.21.5"
 		}
 
 		requires("fabric-api", "yacl")
@@ -92,8 +92,8 @@ publishMods {
 		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
-			start = "1.21.4"
-			end = "1.21.4"
+			start = "1.21.5"
+			end = "1.21.5"
 		}
 
 		javaVersions.add(JavaVersion.VERSION_21)
@@ -108,7 +108,7 @@ publishMods {
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
 		accessToken = providers.gradleProperty("githubToken")
-		commitish = "1.21.4"
+		commitish = "1.21.5"
 		tagName = "v${mod_version}"
 	}
 }
