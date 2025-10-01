@@ -26,7 +26,7 @@ public abstract class StairsBlockMixin {
 
     @Inject(method = "onSteppedOn", at = @At("HEAD"))
     private void toggleAutoJump(World world, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
-        if(!world.isClient) return;
+        if(!world.isClient()) return;
 
         IJMTweaksConfig config = IJMTweaksConfig.get();
         if(!config.autoJumpOnStairs) return;

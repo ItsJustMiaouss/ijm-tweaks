@@ -13,7 +13,7 @@
     "InGameOverlayRendererMixin",
     "InteractionManagerMixin",
     "LightmapTextureManagerMixin",
-    "ParticleManagerMixin",
+    "ClientWorldMixin",
     "ScreenshotRecorderMixin",
     "SplashOverlayMixin",
     "StairsBlockMixin"

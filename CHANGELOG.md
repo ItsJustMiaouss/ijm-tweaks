@@ -1,5 +1,5 @@
 ## Compatibility
-1.21.5
+1.21.9
 
 ## Changes
-- Updated to 1.21.5
+- Updated to 1.21.9
