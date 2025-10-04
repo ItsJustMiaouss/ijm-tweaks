@@ -14,7 +14,7 @@ public class IJMTweaksBindings {
     public static KeyBinding openConfigBinding;
     public static KeyBinding fullbrightKeyBinding;
 
-    private static final KeyBinding.Category IJMTWEAKS_CATEGORY = KeyBinding.Category.create(Identifier.of(IJMTweaks.MOD_ID, "ijmtweaks"));
+    private static final KeyBinding.Category IJMTWEAKS_CATEGORY = KeyBinding.Category.create(Identifier.of(IJMTweaks.MOD_ID, "bindings"));
 
     public static void registerBindings() {
         zoomKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
