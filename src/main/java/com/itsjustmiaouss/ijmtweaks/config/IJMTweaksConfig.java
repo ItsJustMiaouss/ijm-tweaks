@@ -150,8 +150,7 @@ public class IJMTweaksConfig {
                     .build();
 
             Option<Boolean> fullbrightOpt = IJMTweaksConfig.<Boolean>getGenericOption(
-                    "fullbright", "fullbright", OptionRequirement.NON_SURVIVAL
-                    )
+                    "fullbright", "fullbright")
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
                             newVal -> config.fullbright = newVal)
