@@ -79,7 +79,7 @@ publishMods {
 
 		minecraftVersionRange {
 			start = "1.21.9"
-			end = "1.21.9"
+			end = "1.21.10"
 		}
 
 		requires("fabric-api", "yacl")
@@ -93,7 +93,7 @@ publishMods {
 
 		minecraftVersionRange {
 			start = "1.21.9"
-			end = "1.21.9"
+			end = "1.21.10"
 		}
 
 		javaVersions.add(JavaVersion.VERSION_21)

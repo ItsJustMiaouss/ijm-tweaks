@@ -1,6 +1,5 @@
 ## Compatibility
-1.21.9
+1.21.9, 1.21.10
 
 ## Changes
-- Updated to 1.21.9
-- Fullbright option no longer requires to be in creative mode
+- Fixed fullbright not working in non-creative modes (previous update)
