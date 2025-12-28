@@ -1,6 +1,5 @@
 package com.itsjustmiaouss.ijmtweaks;
 
-import com.itsjustmiaouss.ijmtweaks.api.FabrishotIntegration;
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import com.itsjustmiaouss.ijmtweaks.event.HandleKeybindingsEvent;
 import com.itsjustmiaouss.ijmtweaks.keybind.IJMTweaksBindings;
@@ -28,10 +27,5 @@ public class IJMTweaks implements ClientModInitializer {
         // Events
         ClientTickEvents.END_CLIENT_TICK.register(new HandleKeybindingsEvent());
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> IJMTweaksConfig.save());
-
-        // Fabrishot
-        if (FabricLoader.getInstance().isModLoaded("fabrishot")) {
-            FabrishotIntegration.load();
-        }
     }
 }
