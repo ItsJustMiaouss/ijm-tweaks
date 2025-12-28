@@ -26,7 +26,7 @@ public class Permission {
 
         return switch (requirement) {
             case NON_SURVIVAL -> !isSurvivalLike();
-            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.hasPermissionLevel(4);
+            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.getAbilities().creativeMode;
         };
     }
 

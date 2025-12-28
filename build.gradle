@@ -2,8 +2,8 @@ import me.modmuss50.mpp.ReleaseType
 
 plugins {
 	id "me.modmuss50.mod-publish-plugin" version "0.8.4"
-	id 'fabric-loom' version '1.11-SNAPSHOT'
-	id 'maven-publish'
+	id "fabric-loom" version "1.13.3"
+	id "maven-publish"
 }
 
 version = project.mod_version
@@ -30,9 +30,6 @@ dependencies {
 
 	// YACL
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl}"
-
-	// Fabrishot
-	modCompileOnly "maven.modrinth:fabrishot:${project.fabrishot}"
 }
 
 processResources {
@@ -78,8 +75,8 @@ publishMods {
 		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
-			start = "1.21.9"
-			end = "1.21.10"
+			start = "1.21.11"
+			end = "1.21.11"
 		}
 
 		requires("fabric-api", "yacl")
@@ -92,8 +89,8 @@ publishMods {
 		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
-			start = "1.21.9"
-			end = "1.21.10"
+			start = "1.21.11"
+			end = "1.21.11"
 		}
 
 		javaVersions.add(JavaVersion.VERSION_21)
@@ -108,7 +105,7 @@ publishMods {
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
 		accessToken = providers.gradleProperty("githubToken")
-		commitish = "1.21.9"
+		commitish = "1.21.11"
 		tagName = "v${mod_version}"
 	}
 }

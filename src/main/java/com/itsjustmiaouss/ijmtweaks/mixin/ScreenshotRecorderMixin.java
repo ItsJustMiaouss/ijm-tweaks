@@ -1,43 +1,38 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.gl.Framebuffer;
-import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.ScreenshotRecorder;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.File;
-import java.util.function.Consumer;
 
 @Mixin(ScreenshotRecorder.class)
-public abstract class ScreenshotRecorderMixin {
+public class ScreenshotRecorderMixin {
 
-    @Inject(
-            method = "method_22691",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V",
-                    ordinal = 0,
-                    shift = At.Shift.AFTER
-            )
-    )
-    private static void addScreenshotsFolderMessage(NativeImage nativeImage, File file, Consumer<Text> consumer, CallbackInfo ci) {
+    @Inject(method = "saveScreenshot", at = @At("TAIL"))
+    private static void ijmtweaks$onScreenshotSaved(File gameDirectory, String fileName, CallbackInfo ci) {
         IJMTweaksConfig config = IJMTweaksConfig.get();
-        if(!config.screenshotsFolder) return;
+        if (!config.screenshotsFolder) return;
+
+        File screenshots = new File(gameDirectory, "screenshots");
+        File file = new File(screenshots, fileName);
 
         MutableText text = Text.translatable("chat.ijmtweaks.screenshot.message")
                 .formatted(Formatting.UNDERLINE)
-                .styled(style -> style.withClickEvent(new ClickEvent.OpenFile(file.getParent())));
+                .styled(style -> style.withClickEvent(
+                        new ClickEvent.OpenFile(file.getParent())
+                ));
 
-        consumer.accept(text);
+        MinecraftClient.getInstance().execute(() ->
+                MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(text)
+        );
     }
-
 }
