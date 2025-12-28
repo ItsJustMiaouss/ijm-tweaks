@@ -41,7 +41,6 @@ jobs:
           BASE="bbe-${VERSION}+${MC_VERSION}-build.${{ github.run_number }}"
           
           mv "$MAIN_JAR" "build/libs/${BASE}.jar"
-          mv "$SOURCES_JAR" "build/libs/${BASE}-sources.jar"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
