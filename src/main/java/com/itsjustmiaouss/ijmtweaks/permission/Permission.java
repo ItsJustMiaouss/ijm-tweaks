@@ -1,17 +1,17 @@
 package com.itsjustmiaouss.ijmtweaks.permission;
 
 import com.itsjustmiaouss.ijmtweaks.config.OptionRequirement;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerInteractionManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.MultiPlayerGameMode;
+import net.minecraft.client.player.LocalPlayer;
 
 public class Permission {
 
-    private static final MinecraftClient instance = MinecraftClient.getInstance();
+    private static final Minecraft instance = Minecraft.getInstance();
 
     private static boolean isSurvivalLike() {
-        ClientPlayerInteractionManager interactionManager = instance.interactionManager;
-        return interactionManager == null || interactionManager.getCurrentGameMode().isSurvivalLike();
+        MultiPlayerGameMode interactionManager = instance.gameMode;
+        return interactionManager == null || interactionManager.getPlayerMode().isSurvival();
     }
 
     /**
@@ -19,14 +19,14 @@ public class Permission {
      * @see OptionRequirement
      */
     public static boolean hasOptionRequirement(OptionRequirement requirement) {
-        if (instance.isInSingleplayer()) return true;
+        if (instance.isLocalServer()) return true;
 
-        ClientPlayerEntity player = instance.player;
+        LocalPlayer player = instance.player;
         if (player == null) return false;
 
         return switch (requirement) {
             case NON_SURVIVAL -> !isSurvivalLike();
-            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.getAbilities().creativeMode;
+            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.getAbilities().instabuild;
         };
     }
 

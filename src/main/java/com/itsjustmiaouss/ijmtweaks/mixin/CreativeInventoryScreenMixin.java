@@ -1,24 +1,24 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(CreativeInventoryScreen.class)
+@Mixin(CreativeModeInventoryScreen.class)
 public abstract class CreativeInventoryScreenMixin {
 
     @ModifyArg(
-            method = "onMouseClick",
+            method = "slotClicked(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/entity/player/PlayerInventory;setStack(ILnet/minecraft/item/ItemStack;)V"),
-            index = 1)
-    private ItemStack modifyStack(ItemStack stack) {
-        IJMTweaksConfig config = IJMTweaksConfig.get();
-        return stack.copyWithCount(config.singleItemInventorySwap ? 1 : stack.getMaxCount());
+                    target = "Lnet/minecraft/world/item/ItemStack;copyWithCount(I)Lnet/minecraft/world/item/ItemStack;"
+            )
+    )
+    private ItemStack creativePickSingle(ItemStack stack, int count) {
+        return stack.copyWithCount(1);
     }
 
 }
