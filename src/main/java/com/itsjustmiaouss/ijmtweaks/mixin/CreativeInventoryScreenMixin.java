@@ -11,14 +11,13 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public abstract class CreativeInventoryScreenMixin {
 
     @ModifyArg(
-            method = "slotClicked(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V",
+            method = "slotClicked",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/ItemStack;copyWithCount(I)Lnet/minecraft/world/item/ItemStack;"
-            )
-    )
-    private ItemStack creativePickSingle(ItemStack stack, int count) {
-        return stack.copyWithCount(1);
+                    target = "Lnet/minecraft/world/entity/player/Inventory;setItem(ILnet/minecraft/world/item/ItemStack;)V"),
+            index = 1)
+    private ItemStack modifyStack(ItemStack stack) {IJMTweaksConfig config = IJMTweaksConfig.get();
+        return stack.copyWithCount(config.singleItemInventorySwap ? 1 : stack.getMaxStackSize());
     }
 
 }
