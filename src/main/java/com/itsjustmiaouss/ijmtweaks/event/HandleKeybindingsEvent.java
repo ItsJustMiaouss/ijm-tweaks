@@ -3,31 +3,30 @@ package com.itsjustmiaouss.ijmtweaks.event;
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import com.itsjustmiaouss.ijmtweaks.keybind.IJMTweaksBindings;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.Component;
 
 public class HandleKeybindingsEvent implements ClientTickEvents.EndTick {
 
-    private final MinecraftClient instance = MinecraftClient.getInstance();
+    private final Minecraft instance = Minecraft.getInstance();
 
     @Override
-    public void onEndTick(MinecraftClient client) {
-        if (IJMTweaksBindings.openConfigBinding.wasPressed()) {
-            instance.setScreen(IJMTweaksConfig.getScreen().generateScreen(instance.currentScreen));
+    public void onEndTick(Minecraft client) {
+        if (IJMTweaksBindings.openConfigBinding.consumeClick()) {
+            instance.setScreen(IJMTweaksConfig.getScreen().generateScreen(instance.screen));
         }
 
-        if (IJMTweaksBindings.fullbrightKeyBinding.wasPressed()) {
+        if (IJMTweaksBindings.fullbrightKeyBinding.consumeClick()) {
             IJMTweaksConfig config = IJMTweaksConfig.get();
             config.fullbright = !config.fullbright;
 
-            ClientPlayerEntity player = instance.player;
+            LocalPlayer player = instance.player;
             if (player != null) {
-                Text text = config.fullbright
-                        ? Text.translatable("overlay.ijmtweaks.fullbright.enabled")
-                        : Text.translatable("overlay.ijmtweaks.fullbright.disabled");
-                player.sendMessage(text, true);
+                Component text = config.fullbright
+                        ? Component.translatable("overlay.ijmtweaks.fullbright.enabled")
+                        : Component.translatable("overlay.ijmtweaks.fullbright.disabled");
+                player.displayClientMessage(text, true);
             }
         }
     }

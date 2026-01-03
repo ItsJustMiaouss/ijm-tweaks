@@ -1,36 +1,36 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.particle.BlockDustParticle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.TerrainParticle;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientWorld.class)
+@Mixin(ClientLevel.class)
 public abstract class ClientWorldMixin {
 
-    @Inject(method = "addBlockBreakParticles", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "addDestroyBlockEffect", at = @At("HEAD"), cancellable = true)
     private void inject(BlockPos pos, BlockState state, CallbackInfo ci) {
-       if (state.isAir() || !state.hasBlockBreakParticles()) {
+       if (state.isAir() || !state.shouldSpawnTerrainParticles()) {
            return;
        }
-       VoxelShape voxelShape = state.getOutlineShape(((ClientWorld)(Object)this), pos);
+       VoxelShape voxelShape = state.getShape(((ClientLevel)(Object)this), pos);
         IJMTweaksConfig config = IJMTweaksConfig.get();
 
-        voxelShape.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) -> {
+        voxelShape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
             double d = Math.min(1.0, maxX - minX);
             double e = Math.min(1.0, maxY - minY);
             double f = Math.min(1.0, maxZ - minZ);
-            int i = Math.max(2, MathHelper.ceil(d / 0.25));
-            int j = Math.max(2, MathHelper.ceil(e / 0.25));
-            int k = Math.max(2, MathHelper.ceil(f / 0.25));
+            int i = Math.max(2, Mth.ceil(d / 0.25));
+            int j = Math.max(2, Mth.ceil(e / 0.25));
+            int k = Math.max(2, Mth.ceil(f / 0.25));
 
             i -= config.blockBreakParticle;
             j -= config.blockBreakParticle;
@@ -45,7 +45,7 @@ public abstract class ClientWorldMixin {
                         double p = g * d + minX;
                         double q = h * e + minY;
                         double r = o * f + minZ;
-                        MinecraftClient.getInstance().particleManager.addParticle(new BlockDustParticle(((ClientWorld)(Object)this), (double)pos.getX() + p, (double)pos.getY() + q, (double)pos.getZ() + r, g - 0.5, h - 0.5, o - 0.5, state, pos));
+                        Minecraft.getInstance().particleEngine.add(new TerrainParticle(((ClientLevel)(Object)this), (double)pos.getX() + p, (double)pos.getY() + q, (double)pos.getZ() + r, g - 0.5, h - 0.5, o - 0.5, state, pos));
                     }
                 }
             }

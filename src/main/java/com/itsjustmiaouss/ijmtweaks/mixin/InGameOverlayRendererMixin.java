@@ -1,19 +1,19 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.gui.hud.InGameOverlayRenderer;
+import net.minecraft.client.renderer.ScreenEffectRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-@Mixin(InGameOverlayRenderer.class)
+@Mixin(ScreenEffectRenderer.class)
 public abstract class InGameOverlayRendererMixin {
 
     @ModifyArg(
-            method = "renderFireOverlay",
+            method = "renderFire",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V"
+                    target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V"
             ),
             index = 1
     )
