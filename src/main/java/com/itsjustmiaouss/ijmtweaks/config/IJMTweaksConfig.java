@@ -10,9 +10,9 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class IJMTweaksConfig {
     public static final int IMG_WIDTH = 1920;
     public static final int IMG_HEIGHT = 1080;
     private static final ConfigClassHandler<IJMTweaksConfig> HANDLER = ConfigClassHandler.createBuilder(IJMTweaksConfig.class)
-            .id(Identifier.of(IJMTweaks.MOD_ID, "ijmtweaks"))
+            .id(Identifier.fromNamespaceAndPath(IJMTweaks.MOD_ID, "ijmtweaks"))
             .serializer(config -> GsonConfigSerializerBuilder.create(config)
                     .setPath(FabricLoader.getInstance().getConfigDir().resolve(IJMTweaks.MOD_ID + ".json"))
                     .appendGsonBuilder(GsonBuilder::setPrettyPrinting)
@@ -64,8 +64,8 @@ public class IJMTweaksConfig {
         HIDDEN;
 
         @Override
-        public Text getDisplayName() {
-            return Text.translatable(String.format("enum.%s.fireOverlayType.%s", IJMTweaks.MOD_ID, this.name().toLowerCase()));
+        public Component getDisplayName() {
+            return Component.translatable(String.format("enum.%s.fireOverlayType.%s", IJMTweaks.MOD_ID, this.name().toLowerCase()));
         }
     }
 
@@ -87,7 +87,7 @@ public class IJMTweaksConfig {
                             () -> config.pumpkinOverlayOpacity,
                             newVal -> config.pumpkinOverlayOpacity = newVal)
                     .controller(opt -> IntegerSliderControllerBuilder.create(opt)
-                            .range(0, 100).step(10).formatValue(value -> Text.literal(value + "%")))
+                            .range(0, 100).step(10).formatValue(value -> Component.literal(value + "%")))
                     .build();
 
             Option<Integer> blockBreakParticleScaleOpt = IJMTweaksConfig.<Integer>getGenericOption("blockBreakParticle", "break_particles")
@@ -116,7 +116,7 @@ public class IJMTweaksConfig {
                             () -> config.zoomLevel,
                             newVal -> config.zoomLevel = newVal)
                     .controller(opt -> IntegerSliderControllerBuilder.create(opt)
-                            .range(0, 100).step(10).formatValue(value -> Text.literal(value + "%")))
+                            .range(0, 100).step(10).formatValue(value -> Component.literal(value + "%")))
                     .build();
 
             Option<FireOverlayType> fireOverlayOpt = IJMTweaksConfig.<FireOverlayType>getGenericOption("fireOverlay", "fire_overlay")
@@ -157,7 +157,7 @@ public class IJMTweaksConfig {
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
-            return builder.title(Text.of(IJMTweaks.MOD_DISPLAY_NAME))
+            return builder.title(Component.nullToEmpty(IJMTweaks.MOD_DISPLAY_NAME))
                     // Screen
                     .category(ConfigCategory.createBuilder()
                             .name(IJMTweaksConfig.getCategoryName("screen"))
@@ -230,25 +230,25 @@ public class IJMTweaksConfig {
                         .build());
     }
 
-    private static Text getCategoryName(String category) {
-        return Text.translatable(String.format("category.%s.%s", IJMTweaks.MOD_ID, category));
+    private static Component getCategoryName(String category) {
+        return Component.translatable(String.format("category.%s.%s", IJMTweaks.MOD_ID, category));
     }
 
-    private static Text getGroupName(String group) {
-        return Text.translatable(String.format("group.%s.%s.name", IJMTweaks.MOD_ID, group));
+    private static Component getGroupName(String group) {
+        return Component.translatable(String.format("group.%s.%s.name", IJMTweaks.MOD_ID, group));
     }
 
-    private static Text getOptionName(String option) {
-        return Text.translatable(String.format("option.%s.%s.name", IJMTweaks.MOD_ID, option));
+    private static Component getOptionName(String option) {
+        return Component.translatable(String.format("option.%s.%s.name", IJMTweaks.MOD_ID, option));
     }
 
-    private static Text getDesc(String option, @Nullable OptionRequirement requirement) {
-        MutableText text = Text.translatable(String.format("option.%s.%s.desc", IJMTweaks.MOD_ID, option));
-        if (requirement != null) text.append(Text.literal("\n").append(requirement.getText()));
+    private static Component getDesc(String option, @Nullable OptionRequirement requirement) {
+        MutableComponent text = Component.translatable(String.format("option.%s.%s.desc", IJMTweaks.MOD_ID, option));
+        if (requirement != null) text.append(Component.literal("\n").append(requirement.getText()));
         return text;
     }
 
     private static Identifier getImage(String name) {
-        return Identifier.of(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
+        return Identifier.fromNamespaceAndPath(IJMTweaks.MOD_ID, String.format("config/%s.png", name));
     }
 }
