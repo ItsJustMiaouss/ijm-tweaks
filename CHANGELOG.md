@@ -2,9 +2,8 @@
 1.21.11
 
 ## Changes
-- 1.21.11 port.
-- Loom updated to 1.14.7.
-- Gradle updated to 9.2.1.
-- modmuss50 Mod publish plugin updated to 1.1.0.
-- Added/Updated Workflows.
-- Migrated and Remapped to Mojang Mappings.
+- Updated to Minecraft 1.21.11
+- Migrated and Remapped to Mojang Mappings
+
+## Credits
+- [adr278](https://github.com/adr278) – Complete 1.21.11 port - [PR #9](https://github.com/ItsJustMiaouss/ijm-tweaks/pull/9).
