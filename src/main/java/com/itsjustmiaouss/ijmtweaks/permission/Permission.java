@@ -26,7 +26,7 @@ public class Permission {
 
         return switch (requirement) {
             case NON_SURVIVAL -> !isSurvivalLike();
-            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.getAbilities().instabuild;
+case NON_SURVIVAL_OP -> !isSurvivalLike() && player.permissions().hasPermission(Permissions.COMMANDS_ADMIN);
         };
     }
 
