@@ -4,6 +4,7 @@ import com.itsjustmiaouss.ijmtweaks.config.OptionRequirement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.server.permissions.Permissions;
 
 public class Permission {
 

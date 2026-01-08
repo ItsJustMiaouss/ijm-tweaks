@@ -20,7 +20,7 @@ public class IJMTweaksBindings {
         zoomKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.ijmtweaks.zoom",
                 InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_Y,
+                GLFW.GLFW_KEY_C,
                 IJMTWEAKS_CATEGORY
         ));
 

@@ -1,5 +1,10 @@
 ## Compatibility
-1.21.9, 1.21.10
+1.21.11
 
 ## Changes
-- Fixed fullbright not working in non-creative modes (previous update)
+- 1.21.11 port.
+- Loom updated to 1.14.7.
+- Gradle updated to 9.2.1.
+- modmuss50 Mod publish plugin updated to 1.1.0.
+- Added/Updated Workflows.
+- Migrated and Remapped to Mojang Mappings.
