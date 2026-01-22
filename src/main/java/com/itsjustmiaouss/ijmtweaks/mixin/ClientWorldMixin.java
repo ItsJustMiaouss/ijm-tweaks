@@ -32,9 +32,11 @@ public abstract class ClientWorldMixin {
             int j = Math.max(2, Mth.ceil(e / 0.25));
             int k = Math.max(2, Mth.ceil(f / 0.25));
 
-            i -= config.blockBreakParticle;
-            j -= config.blockBreakParticle;
-            k -= config.blockBreakParticle;
+            int reduce = config.blockBreakParticle;
+
+            i = Math.max(1, i - reduce);
+            j = Math.max(1, j - reduce);
+            k = Math.max(1, k - reduce);
 
             for (int l = 0; l < i; ++l) {
                 for (int m = 0; m < j; ++m) {
