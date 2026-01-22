@@ -1,9 +1,8 @@
 package com.itsjustmiaouss.ijmtweaks.keybind;
 
-
 import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
 import com.mojang.blaze3d.platform.InputConstants;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
@@ -17,21 +16,21 @@ public class IJMTweaksBindings {
     private static final KeyMapping.Category IJMTWEAKS_CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(IJMTweaks.MOD_ID, "bindings"));
 
     public static void registerBindings() {
-        zoomKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        zoomKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.zoom",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_C,
                 IJMTWEAKS_CATEGORY
         ));
 
-        openConfigBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        openConfigBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.config",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_UNKNOWN,
                 IJMTWEAKS_CATEGORY
         ));
 
-        fullbrightKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        fullbrightKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.fullbright",
                 InputConstants.Type.KEYSYM,
                 GLFW.GLFW_KEY_UNKNOWN,

@@ -21,8 +21,7 @@ public abstract class ClientWorldMixin {
        if (state.isAir() || !state.shouldSpawnTerrainParticles()) {
            return;
        }
-        ClientLevel level = (ClientLevel) (Object) this;
-        VoxelShape voxelShape = state.getShape(level, pos);
+       VoxelShape voxelShape = state.getShape(((ClientLevel)(Object)this), pos);
         IJMTweaksConfig config = IJMTweaksConfig.get();
 
         voxelShape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
@@ -33,11 +32,9 @@ public abstract class ClientWorldMixin {
             int j = Math.max(2, Mth.ceil(e / 0.25));
             int k = Math.max(2, Mth.ceil(f / 0.25));
 
-            int reduce = config.blockBreakParticle;
-
-            i = Math.max(1, i - reduce);
-            j = Math.max(1, j - reduce);
-            k = Math.max(1, k - reduce);
+            i -= config.blockBreakParticle;
+            j -= config.blockBreakParticle;
+            k -= config.blockBreakParticle;
 
             for (int l = 0; l < i; ++l) {
                 for (int m = 0; m < j; ++m) {
@@ -48,11 +45,11 @@ public abstract class ClientWorldMixin {
                         double p = g * d + minX;
                         double q = h * e + minY;
                         double r = o * f + minZ;
-                        Minecraft.getInstance().particleEngine.add(
-                                new TerrainParticle(level,
-                                        pos.getX() + p,
-                                        pos.getY() + q,
-                                        pos.getZ() + r,
+                        Minecraft.getInstance().particleEngine.add
+                                (new TerrainParticle(((ClientLevel)(Object)this),
+                                        (double)pos.getX() + p,
+                                        (double)pos.getY() + q,
+                                        (double)pos.getZ() + r,
                                         g - 0.5,
                                         h - 0.5,
                                         o - 0.5, state, pos));

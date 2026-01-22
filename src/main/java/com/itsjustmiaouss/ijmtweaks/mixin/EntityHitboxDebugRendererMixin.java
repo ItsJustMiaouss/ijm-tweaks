@@ -19,7 +19,7 @@ public abstract class EntityHitboxDebugRendererMixin {
                     target = "Lnet/minecraft/world/entity/Entity;isInvisible()Z"
             )
     )
-    private boolean ijmtweaks$overrideInvisibility(Entity entity) {
+    private boolean overrideInvisibility(Entity entity) {
 
         boolean invisible = entity.isInvisible();
 

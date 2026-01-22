@@ -8,6 +8,7 @@ import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -19,23 +20,25 @@ import java.util.function.Consumer;
 public abstract class ScreenshotRecorderMixin {
 
     @Inject(
-            method = "method_22691",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V",
-                    ordinal = 0,
-                    shift = At.Shift.AFTER
-            )
-    )
-    private static void addScreenshotsFolderMessage(NativeImage nativeImage, File file, Consumer<Component> consumer, CallbackInfo ci) {
-        IJMTweaksConfig config = IJMTweaksConfig.get();
-        if(!config.screenshotsFolder) return;
+            method = "lambda$grab$1(Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V",
+            at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V", ordinal = 0, shift = At.Shift.AFTER),
+            require = 0)
+
+    private static void afterSuccess(NativeImage image, File file, Consumer<Component> callback, CallbackInfo ci) {
+        addScreenshotsFolderMessage(file, callback);
+    }
+
+    @Unique
+    private static void addScreenshotsFolderMessage(File file, Consumer<Component> callback) {
+        if (!IJMTweaksConfig.get().screenshotsFolder) return;
+
+        File folder = file.getParentFile();
 
         MutableComponent text = Component.translatable("chat.ijmtweaks.screenshot.message")
                 .withStyle(ChatFormatting.UNDERLINE)
-                .withStyle(style -> style.withClickEvent(new ClickEvent.OpenFile(file.getParent())));
+                .withStyle(style -> style.withClickEvent(new ClickEvent.OpenFile(folder)));
 
-        consumer.accept(text);
+        callback.accept(text);
     }
 
 }
