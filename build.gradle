@@ -57,7 +57,7 @@ processResources {
 }
 
 java {
-	withSourcesJar()
+	// withSourcesJar()
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
 	}
