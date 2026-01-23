@@ -10,15 +10,16 @@ public class Permission {
 
     private static final Minecraft instance = Minecraft.getInstance();
 
-    private static boolean isSurvivalLike() {
-        MultiPlayerGameMode interactionManager = instance.gameMode;
-        return interactionManager == null || interactionManager.getPlayerMode().isSurvival();
+    private static boolean isNonSurvival() {
+        MultiPlayerGameMode gm = instance.gameMode;
+        return gm != null && !gm.getPlayerMode().isSurvival();
     }
 
     /**
      * Check if the player has the required permissions.
      * @see OptionRequirement
      */
+
     public static boolean hasOptionRequirement(OptionRequirement requirement) {
         if (instance.isLocalServer()) return true;
 
@@ -26,8 +27,8 @@ public class Permission {
         if (player == null) return false;
 
         return switch (requirement) {
-            case NON_SURVIVAL -> !isSurvivalLike();
-            case NON_SURVIVAL_OP -> !isSurvivalLike() && player.permissions().hasPermission(Permissions.COMMANDS_ADMIN);
+            case NON_SURVIVAL -> isNonSurvival();
+            case NON_SURVIVAL_OP -> isNonSurvival() && player.permissions().hasPermission(Permissions.COMMANDS_ADMIN);
         };
     }
 
