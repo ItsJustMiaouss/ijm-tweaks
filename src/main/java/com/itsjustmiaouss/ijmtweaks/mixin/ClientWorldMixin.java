@@ -21,7 +21,8 @@ public abstract class ClientWorldMixin {
        if (state.isAir() || !state.shouldSpawnTerrainParticles()) {
            return;
        }
-       VoxelShape voxelShape = state.getShape(((ClientLevel)(Object)this), pos);
+        ClientLevel level = (ClientLevel) (Object) this;
+       VoxelShape voxelShape = state.getShape(level, pos);
         IJMTweaksConfig config = IJMTweaksConfig.get();
 
         voxelShape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
@@ -45,11 +46,11 @@ public abstract class ClientWorldMixin {
                         double p = g * d + minX;
                         double q = h * e + minY;
                         double r = o * f + minZ;
-                        Minecraft.getInstance().particleEngine.add
-                                (new TerrainParticle(((ClientLevel)(Object)this),
-                                        (double)pos.getX() + p,
-                                        (double)pos.getY() + q,
-                                        (double)pos.getZ() + r,
+                        Minecraft.getInstance().particleEngine.add(
+                                new TerrainParticle(level,
+                                        pos.getX() + p,
+                                        pos.getY() + q,
+                                        pos.getZ() + r,
                                         g - 0.5,
                                         h - 0.5,
                                         o - 0.5, state, pos));
