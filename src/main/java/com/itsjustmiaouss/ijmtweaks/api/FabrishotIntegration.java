@@ -2,11 +2,12 @@ package com.itsjustmiaouss.ijmtweaks.api;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import me.ramidzkh.fabrishot.event.ScreenshotSaveCallback;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.ChatFormatting;
+
 import java.nio.file.Path;
 
 public class FabrishotIntegration {
