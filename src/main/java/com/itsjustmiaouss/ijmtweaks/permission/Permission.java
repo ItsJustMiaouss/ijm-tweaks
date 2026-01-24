@@ -19,7 +19,6 @@ public class Permission {
      * Check if the player has the required permissions.
      * @see OptionRequirement
      */
-
     public static boolean hasOptionRequirement(OptionRequirement requirement) {
         if (instance.isLocalServer()) return true;
 

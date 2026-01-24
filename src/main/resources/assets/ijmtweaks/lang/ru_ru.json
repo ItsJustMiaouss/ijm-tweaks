@@ -1,0 +1,52 @@
+{
+  "category.ijmtweaks.screen": "Экран",
+  "category.ijmtweaks.utility": "Утилита",
+  "category.ijmtweaks.visual": "Визуал",
+
+  "group.ijmtweaks.overlay.name": "Наложение",
+  "group.ijmtweaks.general.name": "Общие",
+  "group.ijmtweaks.movement.name": "Движение",
+  "group.ijmtweaks.creative.name": "Творческий",
+  "group.ijmtweaks.rendering.name": "Рендеринг",
+  "group.ijmtweaks.debug.name": "Отладка",
+
+  "key.category.ijmtweaks.bindings": "Настройки IJM",
+  "key.ijmtweaks.zoom": "Увеличить",
+  "key.ijmtweaks.config": "Меню настроек",
+  "key.ijmtweaks.fullbright": "Переключить Полную яркость",
+
+  "option.ijmtweaks.description.nonSurvival": "Требуется находиться в режиме игры, не связанном с выживанием, при игре на выделенном сервере..",
+  "option.ijmtweaks.description.nonSurvivalOp": "Требуется быть OP и находиться в режиме игры, не похожем на выживание, при игре на выделенном сервере..",
+
+  "option.ijmtweaks.darkLoadingOverlay.name": "Темный фон загрузки",
+  "option.ijmtweaks.darkLoadingOverlay.desc": "Установить цвет фона загрузки на черный.",
+  "option.ijmtweaks.pumpkinOverlayOpacity.name": "Непрозрачность наложения тыквы",
+  "option.ijmtweaks.pumpkinOverlayOpacity.desc": "Увеличить или уменьшить значение непрозрачности наложения тыквы.",
+  "option.ijmtweaks.blockBreakParticle.name": "Уменьшение кол-ва частиц при разрушении блоков",
+  "option.ijmtweaks.blockBreakParticle.desc": "Изменяет кол-во частиц, создаваемых при разрушении блока. Чем больше число, тем меньше частиц.",
+  "option.ijmtweaks.experienceBarInCreative.name": "Бар Опыта в творческом режиме",
+  "option.ijmtweaks.experienceBarInCreative.desc": "Показывает шкалу опыта в творческом режиме.",
+  "option.ijmtweaks.autoJumpOnStairs.name": "Автоматический прыжок на лестнице",
+  "option.ijmtweaks.autoJumpOnStairs.desc": "Автоматически включать автопрыжок при подъеме по лестнице.",
+  "option.ijmtweaks.zoomLevel.name": "Уровень приближения",
+  "option.ijmtweaks.zoomLevel.desc": "Настройте уровень приближения. Комбинацию клавиш можно изменить в настройках Minecraft.",
+  "option.ijmtweaks.fireOverlay.name": "Наложение огня",
+  "option.ijmtweaks.fireOverlay.desc": "Минимизировать высоту или отключить видимость наложения огня.",
+  "option.ijmtweaks.singleItemInventorySwap.name": "Один предмет в обмене инвентаря",
+  "option.ijmtweaks.singleItemInventorySwap.desc": "Получайте один предмет вместо стопки при использовании клавиш 1-9 в творческом инвентаре.",
+  "option.ijmtweaks.screenshotsFolder.name": "Скриншоты Папка Сообщение",
+  "option.ijmtweaks.screenshotsFolder.desc": "Отправить сообщение в чате с предложением открыть папку со скриншотами после того, как скриншот сделан.",
+  "option.ijmtweaks.debugInvisibleEntities.name": "Отладка невидимых объектов",
+  "option.ijmtweaks.debugInvisibleEntities.desc": "Отображать отладочные хитбоксы невидимых объектов при использовании F3 + B.",
+  "option.ijmtweaks.fullbright.name": "Полная яркость",
+  "option.ijmtweaks.fullbright.desc": "Установите яркость игры на более высокое значение, чтобы видеть в темноте.",
+
+  "enum.ijmtweaks.fireOverlayType.default": "По умолчанию",
+  "enum.ijmtweaks.fireOverlayType.reduced": "Сниженный",
+  "enum.ijmtweaks.fireOverlayType.hidden": "Скрытый",
+
+  "chat.ijmtweaks.screenshot.message": "Откройте папку со скриншотами",
+
+  "overlay.ijmtweaks.fullbright.enabled": "Вкл. Полную яркость",
+  "overlay.ijmtweaks.fullbright.disabled": "Выкл. Полную яркость"
+}
