@@ -1,0 +1,52 @@
+{
+  "category.ijmtweaks.screen": "Affichage",
+  "category.ijmtweaks.utility": "Fonctionnalité",
+  "category.ijmtweaks.visual": "Visuel",
+
+  "group.ijmtweaks.overlay.name": "Superposition",
+  "group.ijmtweaks.general.name": "Général",
+  "group.ijmtweaks.movement.name": "Mouvement",
+  "group.ijmtweaks.creative.name": "Créatif",
+  "group.ijmtweaks.rendering.name": "Affichage",
+  "group.ijmtweaks.debug.name": "Débogage",
+
+  "key.category.ijmtweaks.bindings": "IJM's Tweaks",
+  "key.ijmtweaks.zoom": "Zoom",
+  "key.ijmtweaks.config": "Menu de configuration",
+  "key.ijmtweaks.fullbright": "Vision nocturne",
+
+  "option.ijmtweaks.description.nonSurvival": "Nécessite de ne pas être en survie lorsque vous jouez sur un serveur dédié.",
+  "option.ijmtweaks.description.nonSurvivalOp": "Nécessite d'être opérateur et de ne pas être en survie lorsque vous jouez sur un serveur dédié.",
+
+  "option.ijmtweaks.darkLoadingOverlay.name": "Écran de démarrage sombre",
+  "option.ijmtweaks.darkLoadingOverlay.desc": "Définit la couleur de fond de chargement sur noir.",
+  "option.ijmtweaks.pumpkinOverlayOpacity.name": "Opacité de la texture de la citrouille",
+  "option.ijmtweaks.pumpkinOverlayOpacity.desc": "Ajuste la valeur d'opacité du calque de la citrouille.",
+  "option.ijmtweaks.blockBreakParticle.name": "Réduction des particules de blocs",
+  "option.ijmtweaks.blockBreakParticle.desc": "Modifie le nombre de particules créées lorsqu'un bloc est détruit. Un nombre plus élevé signifie moins de particules.",
+  "option.ijmtweaks.experienceBarInCreative.name": "Barre d'expérience en créatif",
+  "option.ijmtweaks.experienceBarInCreative.desc": "Affiche la barre d'expérience en mode créatif.",
+  "option.ijmtweaks.autoJumpOnStairs.name": "Saut automatique sur les escaliers",
+  "option.ijmtweaks.autoJumpOnStairs.desc": "Active le saut automatique pour les escaliers.",
+  "option.ijmtweaks.zoomLevel.name": "Niveau de zoom",
+  "option.ijmtweaks.zoomLevel.desc": "Ajuste le niveau de zoom. La touche peut être modifiée dans les options de Minecraft.",
+  "option.ijmtweaks.fireOverlay.name": "Superposition du feu",
+  "option.ijmtweaks.fireOverlay.desc": "Réduit la hauteur ou désactive visibilité de la superposition du feu.",
+  "option.ijmtweaks.singleItemInventorySwap.name": "Échange simple d'items",
+  "option.ijmtweaks.singleItemInventorySwap.desc": "Obtenir un seul item au lieu d'un stack en utilisant les touches 1 à 9 dans l'inventaire créatif.",
+  "option.ijmtweaks.screenshotsFolder.name": "Message de capture d'écran",
+  "option.ijmtweaks.screenshotsFolder.desc": "Envoie un message dans le tchat suggérant d'ouvrir le dossier des captures d'écran après avoir pris une capture d'écran.",
+  "option.ijmtweaks.debugInvisibleEntities.name": "Déboguer les entités invisibles",
+  "option.ijmtweaks.debugInvisibleEntities.desc": "Affiche les zones de collision de débogage des entités invisibles en utilisant F3 + B.",
+  "option.ijmtweaks.fullbright.name": "Vision nocturne",
+  "option.ijmtweaks.fullbright.desc": "Règle la luminosité du jeu sur une valeur plus élevée pour pouvoir voir dans l'obscurité.",
+
+  "enum.ijmtweaks.fireOverlayType.default": "Par défaut",
+  "enum.ijmtweaks.fireOverlayType.reduced": "Réduit",
+  "enum.ijmtweaks.fireOverlayType.hidden": "Caché",
+
+  "chat.ijmtweaks.screenshot.message": "Ouvrir le dossier des captures d'écran.",
+
+  "overlay.ijmtweaks.fullbright.enabled": "Fullbright activé",
+  "overlay.ijmtweaks.fullbright.disabled": "Fullbright désactivé"
+}
