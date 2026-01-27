@@ -21,5 +21,4 @@ public abstract class InteractionManagerMixin {
             cir.setReturnValue(localPlayerMode.isSurvival() || localPlayerMode.isCreative());
         }
     }
-
 }

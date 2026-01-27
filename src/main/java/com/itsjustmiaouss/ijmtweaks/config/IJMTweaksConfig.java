@@ -10,6 +10,7 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -49,7 +50,7 @@ public class IJMTweaksConfig {
 
     @SerialEntry public boolean darkLoadingOverlay = true;
     @SerialEntry public int pumpkinOverlayOpacity = 40;
-    @SerialEntry public int blockBreakParticle = 0;
+    @SerialEntry public int blockBreakParticle = 100;
     @SerialEntry public boolean experienceBarInCreative = false;
     @SerialEntry public boolean autoJumpOnStairs = true;
     @SerialEntry public int zoomLevel = 70;
@@ -94,7 +95,7 @@ public class IJMTweaksConfig {
                     .binding(defaults.blockBreakParticle,
                             () -> config.blockBreakParticle,
                             newVal -> config.blockBreakParticle = newVal)
-                    .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 4).step(1))
+                    .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(25))
                     .build();
 
             Option<Boolean> experienceBarInCreativeOpt = IJMTweaksConfig.<Boolean>getGenericOption("experienceBarInCreative", "experience_bar")
@@ -153,7 +154,14 @@ public class IJMTweaksConfig {
                     "fullbright", "fullbright")
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
-                            newVal -> config.fullbright = newVal)
+                            newVal -> {
+                                if (config.fullbright != newVal) {
+                                    config.fullbright = newVal;
+
+                                    Minecraft mc = Minecraft.getInstance();
+                                    mc.levelRenderer.allChanged();
+                                }
+                            })
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 

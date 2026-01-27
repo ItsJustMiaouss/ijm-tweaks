@@ -10,7 +10,7 @@
   "group.ijmtweaks.rendering.name": "Rendering",
   "group.ijmtweaks.debug.name": "Debug",
 
-  "key.categories.ijmtweaks": "IJM's Tweaks",
+  "key.category.ijmtweaks.bindings": "IJM's Tweaks",
   "key.ijmtweaks.zoom": "Zoom",
   "key.ijmtweaks.config": "Config Menu",
   "key.ijmtweaks.fullbright": "Toggle Fullbright",

@@ -19,17 +19,17 @@ import java.util.function.Consumer;
 @Mixin(Screenshot.class)
 public abstract class ScreenshotRecorderMixin {
 
-    @Inject(
-            method = "lambda$grab$1(Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V",
-            at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V", ordinal = 0, shift = At.Shift.AFTER),
+    @Inject(method = "lambda$grab$1(Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V", at = @At(
+            value = "INVOKE",
+            target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V",
+            ordinal = 0,
+            shift = At.Shift.AFTER),
             require = 0)
-
     private static void afterSuccess(NativeImage image, File file, Consumer<Component> callback, CallbackInfo ci) {
-        addScreenshotsFolderMessage(file, callback);
+        ijmtweaks$addScreenshotsFolderMessage(file, callback);
     }
 
-    @Unique
-    private static void addScreenshotsFolderMessage(File file, Consumer<Component> callback) {
+    @Unique private static void ijmtweaks$addScreenshotsFolderMessage(File file, Consumer<Component> callback) {
         if (!IJMTweaksConfig.get().screenshotsFolder) return;
 
         File folder = file.getParentFile();
@@ -37,8 +37,6 @@ public abstract class ScreenshotRecorderMixin {
         MutableComponent text = Component.translatable("chat.ijmtweaks.screenshot.message")
                 .withStyle(ChatFormatting.UNDERLINE)
                 .withStyle(style -> style.withClickEvent(new ClickEvent.OpenFile(folder)));
-
         callback.accept(text);
     }
-
 }

@@ -26,7 +26,7 @@ public class HandleKeybindingsEvent implements ClientTickEvents.EndTick {
                 Component text = config.fullbright
                         ? Component.translatable("overlay.ijmtweaks.fullbright.enabled")
                         : Component.translatable("overlay.ijmtweaks.fullbright.disabled");
-                player.displayClientMessage(text, true);
+                player.sendSystemMessage(text);
             }
         }
     }

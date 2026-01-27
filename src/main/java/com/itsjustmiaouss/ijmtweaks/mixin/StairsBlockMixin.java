@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -25,28 +26,33 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class StairsBlockMixin {
 
     @Inject(method = "stepOn", at = @At("HEAD"))
-    private void toggleAutoJump(Level world, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
-        if(!world.isClientSide()) return;
+    private void toggleAutoJump(Level level, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
+        if (!level.isClientSide()) return;
+
+        Minecraft minecraft = Minecraft.getInstance();
+        LocalPlayer player = minecraft.player;
+        if (player == null || entity != player) return;
 
         IJMTweaksConfig config = IJMTweaksConfig.get();
-        if(!config.autoJumpOnStairs) return;
+        if (!config.autoJumpOnStairs) return;
 
-        Block block = world.getBlockState(pos).getBlock();
-        OptionInstance<Boolean> autoJump = Minecraft.getInstance().options.autoJump();
+        OptionInstance<Boolean> autoJump = minecraft.options.autoJump();
+        boolean shouldEnable = false;
 
-        if(block instanceof StairBlock) {
-            if(state.getValue(BlockStateProperties.WATERLOGGED)) return;
-            if(state.getValue(BlockStateProperties.HALF).equals(Half.TOP)) return; // Is the block upside down
+        if (state.getBlock() instanceof StairBlock) {
+            if (state.getValue(BlockStateProperties.WATERLOGGED)) return;
+
+            // Is the block upside down
+            if (state.getValue(BlockStateProperties.HALF) == Half.TOP) return;
 
             Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
-            BlockPos offsetPos = pos.relative(facing).above();
-            Block upperBlock = world.getBlockState(offsetPos).getBlock();
+            BlockPos upperPos = pos.relative(facing).above();
+            BlockState upperState = level.getBlockState(upperPos);
 
-            // If the next upper block isn't a stair
-            if(!(upperBlock instanceof StairBlock)) return;
+            if (!(upperState.getBlock() instanceof StairBlock)) return;
+
+            shouldEnable = true;
         }
-
-        autoJump.set(block instanceof StairBlock);
+        autoJump.set(shouldEnable);
     }
-
 }
