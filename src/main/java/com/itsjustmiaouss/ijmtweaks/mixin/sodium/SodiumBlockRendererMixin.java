@@ -13,8 +13,7 @@ public abstract class SodiumBlockRendererMixin {
     @ModifyVariable(
             method = "processQuad",
             at = @At("STORE"),
-            ordinal = 0
-    )
+            name = "lightMode")
     private LightMode forceFlatLighting(LightMode original) {
         return IJMTweaksConfig.get().fullbright ? LightMode.FLAT : original;
     }

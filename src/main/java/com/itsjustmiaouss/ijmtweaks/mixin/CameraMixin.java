@@ -6,6 +6,7 @@ import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,8 +34,8 @@ public abstract class CameraMixin {
             value = "FIELD",
             target = "Lnet/minecraft/client/Camera;fov:F",
             ordinal = 0,
-            shift = At.Shift.AFTER
-    ))
+            shift = At.Shift.AFTER,
+            opcode = Opcodes.PUTFIELD))
     private void applyZoomToWorldFov(DeltaTracker deltaTracker, CallbackInfo ci) {
         Options options = Minecraft.getInstance().options;
         boolean zoomHeld = IJMTweaksBindings.zoomKeyBinding.isDown();
@@ -59,8 +60,8 @@ public abstract class CameraMixin {
             value = "FIELD",
             target = "Lnet/minecraft/client/Camera;hudFov:F",
             ordinal = 0,
-            shift = At.Shift.AFTER
-    ))
+            shift = At.Shift.AFTER,
+            opcode = Opcodes.PUTFIELD))
     private void applyAnchoredHudFov(DeltaTracker deltaTracker, CallbackInfo ci) {
         if (!this.ijmtweaks$zoomActive) return;
 
