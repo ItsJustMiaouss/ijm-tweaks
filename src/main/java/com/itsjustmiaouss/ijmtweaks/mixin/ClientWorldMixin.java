@@ -38,7 +38,6 @@ public abstract class ClientWorldMixin {
     }
 
     @Unique private int ijmtweaks$getReducedValue(int value) {
-        float inverted = 100 - IJMTweaksConfig.get().blockBreakParticle;
-        return Math.round(value * inverted / 100f);
+        return Math.round(value * IJMTweaksConfig.get().blockBreakParticle / 100f);
     }
 }
