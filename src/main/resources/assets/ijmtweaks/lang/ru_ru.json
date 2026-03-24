@@ -23,7 +23,7 @@
   "option.ijmtweaks.pumpkinOverlayOpacity.name": "Непрозрачность наложения тыквы",
   "option.ijmtweaks.pumpkinOverlayOpacity.desc": "Увеличить или уменьшить значение непрозрачности наложения тыквы.",
   "option.ijmtweaks.blockBreakParticle.name": "Уменьшение кол-ва частиц при разрушении блоков",
-  "option.ijmtweaks.blockBreakParticle.desc": "Изменяет кол-во частиц, создаваемых при разрушении блока. Чем больше число, тем меньше частиц.",
+  "option.ijmtweaks.blockBreakParticle.desc": "Изменяет кол-во частиц, создаваемых при разрушении блока.",
   "option.ijmtweaks.experienceBarInCreative.name": "Бар Опыта в творческом режиме",
   "option.ijmtweaks.experienceBarInCreative.desc": "Показывает шкалу опыта в творческом режиме.",
   "option.ijmtweaks.autoJumpOnStairs.name": "Автоматический прыжок на лестнице",
