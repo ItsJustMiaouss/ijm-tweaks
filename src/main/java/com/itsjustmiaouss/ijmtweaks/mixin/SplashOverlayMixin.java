@@ -24,5 +24,4 @@ public abstract class SplashOverlayMixin {
             LOGO_BACKGROUND_COLOR = LOGO_BACKGROUND_COLOR_DARK;
         }
     }
-
 }

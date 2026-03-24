@@ -1,19 +1,22 @@
 {
   "required": true,
   "package": "com.itsjustmiaouss.ijmtweaks.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "sodium.SodiumBlockRendererMixin",
+    "CameraMixin",
     "ClientWorldMixin",
     "CreativeInventoryScreenMixin",
     "EntityHitboxDebugRendererMixin",
-    "GameRendererMixin",
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
     "InteractionManagerMixin",
-    "LightmapTextureManagerMixin",
+    "LightmapRenderStateExtractorMixin",
+    "ModelBlockRendererAccessor",
+    "ModelBlockRendererMixin",
     "ScreenshotRecorderMixin",
     "SplashOverlayMixin",
     "StairsBlockMixin"

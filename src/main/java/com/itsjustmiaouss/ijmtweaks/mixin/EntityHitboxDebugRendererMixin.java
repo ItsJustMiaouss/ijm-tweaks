@@ -12,14 +12,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(EntityHitboxDebugRenderer.class)
 public abstract class EntityHitboxDebugRendererMixin {
 
-    @Redirect(
-            method = "emitGizmos",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/Entity;isInvisible()Z"
-            )
-    )
-    private boolean ijmtweaks$overrideInvisibility(Entity entity) {
+    @Redirect(method = "emitGizmos", at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/world/entity/Entity;isInvisible()Z"
+    ))
+    private boolean overrideInvisibility(Entity entity) {
 
         boolean invisible = entity.isInvisible();
 
@@ -28,5 +25,4 @@ public abstract class EntityHitboxDebugRendererMixin {
         }
         return invisible;
     }
-
 }

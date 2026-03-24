@@ -2,25 +2,34 @@ package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(Gui.class)
 public abstract class InGameHudMixin {
 
-    @ModifyArg(
-            method = "renderCameraOverlays",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/Gui;renderTextureOverlay(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/Identifier;F)V",
-                    ordinal = 0
-            ),
-            index = 2
-    )
-    private float pumpkinOverlayOpacity(float opacity) {
-        IJMTweaksConfig config = IJMTweaksConfig.get();
-        return (float) config.pumpkinOverlayOpacity / 100;
+    @ModifyArgs(method = "extractCameraOverlays", at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/client/gui/Gui;extractTextureOverlay(Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/resources/Identifier;F)V"
+    ))
+    private void modifyPumpkinOverlayOpacity(Args args) {
+        Identifier texture = args.get(1);
+        args.get(2);
+        float alpha;
+
+        if (texture != null && isPumpkinOverlay(texture)) {
+            alpha = (float) IJMTweaksConfig.get().pumpkinOverlayOpacity / 100.0F;
+            args.set(2, alpha);
+        }
     }
 
+    private static boolean isPumpkinOverlay(Identifier texture) {
+        String path = texture.getPath();
+        return path.equals("textures/misc/pumpkinblur.png")
+                || path.endsWith("/pumpkinblur.png")
+                || path.contains("pumpkinblur");
+    }
 }

@@ -2,7 +2,7 @@ import me.modmuss50.mpp.ReleaseType
 
 plugins {
 	id "me.modmuss50.mod-publish-plugin" version "1.1.0"
-	id 'fabric-loom' version '1.14.7'
+	id 'net.fabricmc.fabric-loom' version '1.14-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,22 +17,35 @@ repositories {
 	maven { url = "https://maven.terraformersmc.com/releases/" }
 	maven { url = "https://maven.isxander.dev/releases" }
 	maven { url = "https://api.modrinth.com/maven" }
+	maven { url = "https://maven.caffeinemc.net/releases" }
+	maven { url = "https://maven.caffeinemc.net/snapshots" }
+
+	mavenCentral()
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Mod Menu
-	modApi "com.terraformersmc:modmenu:${project.mod_menu}"
+	api "com.terraformersmc:modmenu:${project.mod_menu}"
 
 	// YACL
-	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl}"
+	implementation "dev.isxander:yet-another-config-lib:${project.yacl}"
 
 	// Fabrishot
-	modCompileOnly "maven.modrinth:fabrishot:${project.fabrishot}"
+	compileOnly "maven.modrinth:fabrishot:${project.fabrishot}"
+
+	// Sodium
+	compileOnly "net.caffeinemc:sodium-fabric:${project.sodium}"
+
+	// Twelvemonkeys
+	implementation("com.twelvemonkeys.imageio:imageio-core:3.13.1")
+	implementation("com.twelvemonkeys.imageio:imageio-webp:3.13.1")
+
+	include("com.twelvemonkeys.imageio:imageio-core:3.13.1")
+	include("com.twelvemonkeys.imageio:imageio-webp:3.13.1")
 }
 
 processResources {
@@ -50,15 +63,15 @@ processResources {
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
-
 java {
 	// withSourcesJar()
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+tasks.withType(JavaCompile).configureEach {
+	options.release.set(25)
 }
 
 jar {
@@ -68,7 +81,7 @@ jar {
 }
 
 publishMods {
-	file = remapJar.archiveFile
+	file = tasks.named("jar").flatMap {it.archiveFile} as Provider<? extends RegularFile>
 	changelog = rootProject.file("CHANGELOG.md").text
 	type = ReleaseType.STABLE
 	modLoaders.add("fabric")
@@ -78,8 +91,8 @@ publishMods {
 		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
-			start = "1.21.11"
-			end = "1.21.11"
+			start = "26.1"
+			end   = "26.1"
 		}
 
 		requires("fabric-api", "yacl")
@@ -92,12 +105,10 @@ publishMods {
 		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
-			start = "1.21.11"
-			end = "1.21.11"
+			start = "26.1"
+			end   = "26.1"
 		}
-
-		javaVersions.add(JavaVersion.VERSION_21)
-
+		javaVersions.add(JavaVersion.VERSION_25)
 		clientRequired = true
 		serverRequired = false
 
@@ -108,7 +119,7 @@ publishMods {
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
 		accessToken = providers.gradleProperty("githubToken")
-		commitish = "1.21.11"
+		commitish = "26.1"
 		tagName = "v${mod_version}"
 	}
 }
