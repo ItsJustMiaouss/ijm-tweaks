@@ -2,6 +2,7 @@ package com.itsjustmiaouss.ijmtweaks.event;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import com.itsjustmiaouss.ijmtweaks.keybind.IJMTweaksBindings;
+import com.itsjustmiaouss.ijmtweaks.render.RenderHelper;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -20,6 +21,7 @@ public class HandleKeybindingsEvent implements ClientTickEvents.EndTick {
         if (IJMTweaksBindings.fullbrightKeyBinding.consumeClick()) {
             IJMTweaksConfig config = IJMTweaksConfig.get();
             config.fullbright = !config.fullbright;
+            RenderHelper.updateFullbright();
 
             LocalPlayer player = instance.player;
             if (player != null) {

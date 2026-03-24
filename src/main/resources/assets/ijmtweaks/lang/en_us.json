@@ -40,6 +40,8 @@
   "option.ijmtweaks.debugInvisibleEntities.desc": "Render the debug hitboxes of invisible entities when using F3 + B.",
   "option.ijmtweaks.fullbright.name": "Fullbright",
   "option.ijmtweaks.fullbright.desc": "Set the game's brightness to an higher value to be able to see in the dark.",
+  "option.ijmtweaks.fullbrightAmbientOcclusion.name": "Fullbright Ambient Occlusion",
+  "option.ijmtweaks.fullbrightAmbientOcclusion.desc": "Toggle the shadow created by blocks when using fullbright.",
 
   "enum.ijmtweaks.fireOverlayType.default": "Default",
   "enum.ijmtweaks.fireOverlayType.reduced": "Reduced",

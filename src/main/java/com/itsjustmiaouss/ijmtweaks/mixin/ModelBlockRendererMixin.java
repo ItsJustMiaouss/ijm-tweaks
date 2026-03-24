@@ -17,8 +17,12 @@ public abstract class ModelBlockRendererMixin {
                     value = "FIELD",
                     target = "Lnet/minecraft/client/renderer/block/ModelBlockRenderer;ambientOcclusion:Z",
                     opcode = Opcodes.GETFIELD))
-    private boolean disableAmbientOcclusion(ModelBlockRenderer instance) {
-        return !IJMTweaksConfig.get().fullbright && ijmtweaks$instanceAmbientOcclusion(instance);
+    private boolean enableAmbientOcclusion(ModelBlockRenderer instance) {
+        if (IJMTweaksConfig.get().fullbright && !IJMTweaksConfig.get().fullbrightAmbientOcclusion) {
+            return false;
+        }
+
+        return ijmtweaks$instanceAmbientOcclusion(instance);
     }
 
     @Unique

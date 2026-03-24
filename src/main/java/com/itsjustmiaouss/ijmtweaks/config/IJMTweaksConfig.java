@@ -2,6 +2,7 @@ package com.itsjustmiaouss.ijmtweaks.config;
 
 import com.google.gson.GsonBuilder;
 import com.itsjustmiaouss.ijmtweaks.IJMTweaks;
+import com.itsjustmiaouss.ijmtweaks.render.RenderHelper;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.EnumControllerBuilder;
@@ -10,7 +11,6 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -58,6 +58,7 @@ public class IJMTweaksConfig {
     @SerialEntry public boolean screenshotsFolder = true;
     @SerialEntry public boolean debugInvisibleEntities = false;
     @SerialEntry public boolean fullbright = false;
+    @SerialEntry public boolean fullbrightAmbientOcclusion = true;
 
     public enum FireOverlayType implements NameableEnum {
         DEFAULT,
@@ -155,13 +156,17 @@ public class IJMTweaksConfig {
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
                             newVal -> {
-                                if (config.fullbright != newVal) {
-                                    config.fullbright = newVal;
-
-                                    Minecraft mc = Minecraft.getInstance();
-                                    mc.levelRenderer.allChanged();
-                                }
+                                config.fullbright = newVal;
+                                RenderHelper.updateFullbright();
                             })
+                    .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
+                    .build();
+
+            Option<Boolean> fullbrightAmbientOcclusionOpt = IJMTweaksConfig.<Boolean>getGenericOption(
+                            "fullbrightAmbientOcclusion", "fullbright_occlusion")
+                    .binding(defaults.fullbrightAmbientOcclusion,
+                            () -> config.fullbrightAmbientOcclusion,
+                            newVal -> config.fullbrightAmbientOcclusion = newVal)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
@@ -211,7 +216,8 @@ public class IJMTweaksConfig {
                                     .name(IJMTweaksConfig.getGroupName("rendering"))
                                     .options(List.of(
                                             blockBreakParticleScaleOpt,
-                                            fullbrightOpt
+                                            fullbrightOpt,
+                                            fullbrightAmbientOcclusionOpt
                                     ))
                                     .build())
                             .group(OptionGroup.createBuilder()
