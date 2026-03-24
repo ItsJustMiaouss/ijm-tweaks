@@ -4,6 +4,7 @@ import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
@@ -20,13 +21,14 @@ public abstract class InGameHudMixin {
         args.get(2);
         float alpha;
 
-        if (texture != null && isPumpkinOverlay(texture)) {
+        if (texture != null && ijmtweaks$isPumpkinOverlay(texture)) {
             alpha = (float) IJMTweaksConfig.get().pumpkinOverlayOpacity / 100.0F;
             args.set(2, alpha);
         }
     }
 
-    private static boolean isPumpkinOverlay(Identifier texture) {
+    @Unique
+    private static boolean ijmtweaks$isPumpkinOverlay(Identifier texture) {
         String path = texture.getPath();
         return path.equals("textures/misc/pumpkinblur.png")
                 || path.endsWith("/pumpkinblur.png")
