@@ -17,7 +17,7 @@ public abstract class AbstractBlockRenderContextMixin {
 
     @Inject(method = "prepareAoInfo", at = @At("TAIL"))
     private void disableAmbientOcclusion(boolean modelAo, CallbackInfo ci) {
-        if (!IJMTweaksConfig.get().fullbright) return;
+        if (!IJMTweaksConfig.get().fullbright || IJMTweaksConfig.get().fullbrightAmbientOcclusion) return;
 
         this.useAmbientOcclusion = false;
         this.defaultLightMode = LightMode.FLAT;
