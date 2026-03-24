@@ -7,13 +7,14 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import org.jspecify.annotations.NonNull;
 
 public class HandleKeybindingsEvent implements ClientTickEvents.EndTick {
 
     private final Minecraft instance = Minecraft.getInstance();
 
     @Override
-    public void onEndTick(Minecraft client) {
+    public void onEndTick(@NonNull Minecraft client) {
         if (IJMTweaksBindings.openConfigBinding.consumeClick()) {
             instance.setScreen(IJMTweaksConfig.getScreen().generateScreen(instance.screen));
         }
