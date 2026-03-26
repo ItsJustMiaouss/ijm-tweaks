@@ -1,11 +1,10 @@
 ## Compatibility
-1.21.11
+26.1
 
 ## Changes
-- Fixed missing particles when a block is broken
-- Added French translation
-- Added Russian translation
+- Updated to MC-26.1
+- Added an option to toggle ambient occlusion when using fullbright
+- Slider for "Block Break Particle Reduction" now goes from 0% to 100% (default).
 
 ## Credits
-- [adr278](https://github.com/adr278) – Fix Reduce particles when a block is broken option when set to >=2 - [PR #9](https://github.com/ItsJustMiaouss/ijm-tweaks/pull/11).
-- [vanapro1](https://github.com/vanapro1) - Russian translation - [Issue #10](https://github.com/ItsJustMiaouss/ijm-tweaks/issues/10)
+- [adr278](https://github.com/adr278) – 26.1 Port - [PR #12](https://github.com/ItsJustMiaouss/ijm-tweaks/pull/12).
