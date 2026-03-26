@@ -83,6 +83,7 @@ jar {
 
 publishMods {
 	file = tasks.named("jar").flatMap {it.archiveFile} as Provider<? extends RegularFile>
+	displayName = file.map { it.asFile.name }
 	changelog = rootProject.file("CHANGELOG.md").text
 	type = ReleaseType.STABLE
 	modLoaders.add("fabric")
