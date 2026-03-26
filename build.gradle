@@ -2,7 +2,7 @@ import me.modmuss50.mpp.ReleaseType
 
 plugins {
 	id "me.modmuss50.mod-publish-plugin" version "1.1.0"
-	id 'net.fabricmc.fabric-loom' version '1.14-SNAPSHOT'
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -64,7 +64,6 @@ processResources {
 }
 
 java {
-	// withSourcesJar()
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
 	}
@@ -75,8 +74,10 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}"}
+		rename { "${it}_${inputs.properties.archivesName}"}
 	}
 }
 
