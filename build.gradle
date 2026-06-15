@@ -32,7 +32,7 @@ dependencies {
 	api "com.terraformersmc:modmenu:${project.mod_menu}"
 
 	// YACL
-	implementation "dev.isxander:yet-another-config-lib:${project.yacl}"
+	implementation "maven.modrinth:yacl:${project.yacl}"
 
 	// Fabrishot
 	compileOnly "maven.modrinth:fabrishot:${project.fabrishot}"
@@ -93,8 +93,8 @@ publishMods {
 		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
-			start = "26.1"
-			end   = "26.1"
+			start = "26.2"
+			end   = "26.2"
 		}
 
 		requires("fabric-api", "yacl")
@@ -107,8 +107,8 @@ publishMods {
 		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
-			start = "26.1"
-			end   = "26.1"
+			start = "26.2"
+			end   = "26.2"
 		}
 		javaVersions.add(JavaVersion.VERSION_25)
 		clientRequired = true
@@ -121,7 +121,7 @@ publishMods {
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
 		accessToken = providers.gradleProperty("githubToken")
-		commitish = "26.1"
+		commitish = "26.2"
 		tagName = "v${mod_version}"
 	}
 }

@@ -9,11 +9,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(ScreenEffectRenderer.class)
 public abstract class InGameOverlayRendererMixin {
 
-    @ModifyArg(method = "renderFire", at = @At(
+    @ModifyArg(method = "lambda$submitFire$0", at = @At(
             value = "INVOKE",
-            target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V"),
+            target = "Lorg/joml/Matrix4f;translate(FFF)Lorg/joml/Matrix4f;"),
             index = 1)
-    private static float fireOverlayHeight(float x) {
+    private static float fireOverlayHeight(float y) {
         IJMTweaksConfig config = IJMTweaksConfig.get();
 
         switch (config.fireOverlay) {
