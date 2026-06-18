@@ -183,6 +183,7 @@ public class IJMTweaksConfig {
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
                             newVal -> {
+                                if (config.fullbright == newVal) return;
                                 config.fullbright = newVal;
                                 RenderHelper.updateFullbright();
                             })
@@ -193,7 +194,11 @@ public class IJMTweaksConfig {
                             "fullbrightAmbientOcclusion", "fullbright_occlusion")
                     .binding(defaults.fullbrightAmbientOcclusion,
                             () -> config.fullbrightAmbientOcclusion,
-                            newVal -> config.fullbrightAmbientOcclusion = newVal)
+                            newVal -> {
+                                if (config.fullbrightAmbientOcclusion == newVal) return;
+                                config.fullbrightAmbientOcclusion = newVal;
+                                RenderHelper.updateFullbright();
+                            })
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
