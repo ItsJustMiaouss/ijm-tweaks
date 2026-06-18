@@ -23,7 +23,7 @@ public class FabrishotIntegration {
                     .withStyle(style -> style.withClickEvent(new ClickEvent.OpenFile(folder)));
 
             Minecraft mc = Minecraft.getInstance();
-            mc.execute(() -> mc.gui.getChat().addClientSystemMessage(text));
+            mc.execute(() -> mc.gui.hud.getChat().addClientSystemMessage(text));
         });
     }
 

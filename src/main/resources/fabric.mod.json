@@ -26,6 +26,11 @@
 	"mixins": [
 		"ijmtweaks.mixins.json"
 	],
+	"custom": {
+		"badoptimizations:cache_hooks": {
+			"lightmap": "com.itsjustmiaouss.ijmtweaks.compat.badoptimizations.BadOptimizationsLightmapHook"
+		}
+	},
 	"depends": {
 		"fabricloader": ">=0.18.0",
 		"minecraft": ">=${minecraft_min}",
