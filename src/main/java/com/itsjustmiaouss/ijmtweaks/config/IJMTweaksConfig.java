@@ -11,8 +11,6 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.Options;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
@@ -43,37 +41,11 @@ public class IJMTweaksConfig {
     }
 
     public static void save() {
-        syncDarkLoadingOverlayFromMinecraft();
         HANDLER.save();
     }
 
     public static IJMTweaksConfig get() {
         return HANDLER.instance();
-    }
-
-    public static boolean isDarkLoadingOverlay() {
-        syncDarkLoadingOverlayFromMinecraft();
-        return get().darkLoadingOverlay;
-    }
-
-    public static void setDarkLoadingOverlay(boolean enabled) {
-        IJMTweaksConfig config = get();
-        config.darkLoadingOverlay = enabled;
-
-        Options options = Minecraft.getInstance().options;
-
-        if (!options.darkMojangStudiosBackground().get().equals(enabled)) {
-            options.darkMojangStudiosBackground().set(enabled);
-            options.save();
-        }
-    }
-
-    public static void syncDarkLoadingOverlayFromMinecraft() {
-        syncDarkLoadingOverlayFromOptions(Minecraft.getInstance().options);
-    }
-
-    public static void syncDarkLoadingOverlayFromOptions(Options options) {
-        get().darkLoadingOverlay = options.darkMojangStudiosBackground().get();
     }
 
     @SerialEntry public boolean darkLoadingOverlay = true;
@@ -105,9 +77,10 @@ public class IJMTweaksConfig {
         return YetAnotherConfigLib.create(HANDLER, ((defaults, config, builder) -> {
             // Config Options
             Option<Boolean> darkLoadingScreenOpt = IJMTweaksConfig.<Boolean>getGenericOption("darkLoadingOverlay", "dark_overlay")
-                    .binding(IJMTweaksConfig.isDarkLoadingOverlay(),
-                            IJMTweaksConfig::isDarkLoadingOverlay,
-                            IJMTweaksConfig::setDarkLoadingOverlay)
+                    .binding(defaults.darkLoadingOverlay,
+                            () -> config.darkLoadingOverlay,
+                            newVal -> config.darkLoadingOverlay = newVal)
+                    .flag(OptionFlag.ASSET_RELOAD)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
@@ -183,7 +156,6 @@ public class IJMTweaksConfig {
                     .binding(defaults.fullbright,
                             () -> config.fullbright,
                             newVal -> {
-                                if (config.fullbright == newVal) return;
                                 config.fullbright = newVal;
                                 RenderHelper.updateFullbright();
                             })
@@ -194,11 +166,7 @@ public class IJMTweaksConfig {
                             "fullbrightAmbientOcclusion", "fullbright_occlusion")
                     .binding(defaults.fullbrightAmbientOcclusion,
                             () -> config.fullbrightAmbientOcclusion,
-                            newVal -> {
-                                if (config.fullbrightAmbientOcclusion == newVal) return;
-                                config.fullbrightAmbientOcclusion = newVal;
-                                RenderHelper.updateFullbright();
-                            })
+                            newVal -> config.fullbrightAmbientOcclusion = newVal)
                     .controller(opt -> BooleanControllerBuilder.create(opt).trueFalseFormatter())
                     .build();
 
