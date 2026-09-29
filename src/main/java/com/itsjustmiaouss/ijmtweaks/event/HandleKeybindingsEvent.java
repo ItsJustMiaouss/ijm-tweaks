@@ -16,7 +16,7 @@ public class HandleKeybindingsEvent implements ClientTickEvents.EndTick {
     @Override
     public void onEndTick(@NonNull Minecraft client) {
         if (IJMTweaksBindings.openConfigBinding.consumeClick()) {
-            instance.setScreen(IJMTweaksConfig.getScreen().generateScreen(instance.screen));
+            instance.setScreenAndShow(IJMTweaksConfig.getScreen().generateScreen(instance.gui.screen()));
         }
 
         if (IJMTweaksBindings.fullbrightKeyBinding.consumeClick()) {

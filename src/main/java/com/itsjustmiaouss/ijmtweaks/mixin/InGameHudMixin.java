@@ -1,7 +1,7 @@
 package com.itsjustmiaouss.ijmtweaks.mixin;
 
 import com.itsjustmiaouss.ijmtweaks.config.IJMTweaksConfig;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.Hud;
 import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Mixin(Gui.class)
+@Mixin(Hud.class)
 public abstract class InGameHudMixin {
 
     @ModifyArgs(method = "extractCameraOverlays", at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/client/gui/Gui;extractTextureOverlay(Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/resources/Identifier;F)V"
+            target = "Lnet/minecraft/client/gui/Hud;extractTextureOverlay(Lnet/minecraft/client/gui/GuiGraphicsExtractor;Lnet/minecraft/resources/Identifier;F)V"
     ))
     private void modifyPumpkinOverlayOpacity(Args args) {
         Identifier texture = args.get(1);

@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 @Mixin(Screenshot.class)
 public abstract class ScreenshotRecorderMixin {
 
-    @Inject(method = "lambda$grab$1(Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V", at = @At(
+    @Inject(method = "lambda$grab$3(Lcom/mojang/blaze3d/platform/NativeImage;Ljava/io/File;Ljava/util/function/Consumer;)V", at = @At(
             value = "INVOKE",
             target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V",
             ordinal = 0,
