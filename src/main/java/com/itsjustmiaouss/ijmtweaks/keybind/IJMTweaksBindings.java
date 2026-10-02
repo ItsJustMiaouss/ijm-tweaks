@@ -5,7 +5,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
+import org.lwjgl.sdl.SDLKeycode;
 
 public class IJMTweaksBindings {
 
@@ -18,22 +18,22 @@ public class IJMTweaksBindings {
     public static void registerBindings() {
         zoomKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.zoom",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_C,
+                InputConstants.Type.KEYBOARD,
+                SDLKeycode.SDLK_C,
                 IJMTWEAKS_CATEGORY
         ));
 
         openConfigBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.config",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_UNKNOWN,
+                InputConstants.Type.KEYBOARD,
+                SDLKeycode.SDLK_UNKNOWN,
                 IJMTWEAKS_CATEGORY
         ));
 
         fullbrightKeyBinding = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.ijmtweaks.fullbright",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_UNKNOWN,
+                InputConstants.Type.KEYBOARD,
+                SDLKeycode.SDLK_UNKNOWN,
                 IJMTWEAKS_CATEGORY
         ));
     }

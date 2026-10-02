@@ -93,8 +93,8 @@ publishMods {
 		accessToken = providers.gradleProperty("modrinthToken")
 
 		minecraftVersionRange {
-			start = "26.2"
-			end   = "26.2"
+			start = "26.3"
+			end   = "26.3"
 		}
 
 		requires("fabric-api", "yacl")
@@ -107,8 +107,8 @@ publishMods {
 		accessToken = providers.gradleProperty("curseforgeToken")
 
 		minecraftVersionRange {
-			start = "26.2"
-			end   = "26.2"
+			start = "26.3"
+			end   = "26.3"
 		}
 		javaVersions.add(JavaVersion.VERSION_25)
 		clientRequired = true
@@ -121,7 +121,7 @@ publishMods {
 	github {
 		repository = "ItsJustMiaouss/ijm-tweaks"
 		accessToken = providers.gradleProperty("githubToken")
-		commitish = "26.2"
+		commitish = "26.3"
 		tagName = "v${mod_version}"
 	}
 }
