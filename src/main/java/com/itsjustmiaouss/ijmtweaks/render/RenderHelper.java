@@ -13,13 +13,8 @@ public class RenderHelper {
         if (minecraft.level == null) return;
 
         LIGHTMAP_DIRTY.set(true);
+        minecraft.levelExtractor.allChanged();
 
-        minecraft.levelRenderer.invalidateCompiledGeometry(
-                minecraft.level,
-                minecraft.options,
-                minecraft.gameRenderer.mainCamera(),
-                minecraft.getBlockColors()
-        );
         IJMTweaks.LOGGER.info("Rerendered level lightning!");
     }
 
