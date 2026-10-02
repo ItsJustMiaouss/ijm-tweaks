@@ -6,7 +6,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "sodium.AbstractBlockRenderContextMixin",
     "CameraMixin",
     "ClientWorldMixin",
     "CreativeInventoryScreenMixin",
@@ -15,8 +14,6 @@
     "InGameOverlayRendererMixin",
     "InteractionManagerMixin",
     "LightmapRenderStateExtractorMixin",
-    "ModelBlockRendererAccessor",
-    "ModelBlockRendererMixin",
     "OptionsMixin",
     "ScreenshotRecorderMixin",
     "StairsBlockMixin"
