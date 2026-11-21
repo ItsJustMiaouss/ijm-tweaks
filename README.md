@@ -91,6 +91,6 @@ Everything is configurable and can be toggled!
 
 - [Fabrishot](https://modrinth.com/mod/fabrishot)
 
-> [![BisectHosting Partner](https://www.bisecthosting.com/partners/custom-banners/08aea5e4-5188-4053-9fbc-bac64b24b718.webp)](https://itsjustmiaouss.com/bisect?r=Modrinth)
+> [![BisectHosting Partner](https://www.bisecthosting.com/partners/custom-banners/08aea5e4-5188-4053-9fbc-bac64b24b718.webp)](https://itsjustmiaouss.com/bisect?r=GitHub)
 > 
 > 🎮 **Need a Minecraft server?** Get **25% off your first month** at [BisectHosting](https://itsjustmiaouss.com/bisect?r=Modrinth) using promo code **IJM**!
